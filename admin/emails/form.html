@@ -1,0 +1,97 @@
+<div class="block-area"  >
+  <div class="tile padding-form">
+    <form novalidate name="theFormEmail" ng-submit="submit(theFormEmail)" class="form-horizontal">
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="title">Título</label>
+            <div class="col-md-8">
+              <input ng-disabled="isShow()" id="title" ng-model="email.title" type="text" placeholder="" class="form-control input-md" required="">
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="reason">Motivo</label>
+            <div class="col-md-8">
+              <select ng-disabled="isShow()" id="reason" ng-model="email.reason" required class="form-control">
+                  <option value="">Seleccione...</option>
+                  <option value="Promoción">Promoción</option>
+                  <option value="Bono">Bono</option>
+                  <option value="Descuento">Descuento</option>
+                  <option value="Otros Asuntos">Otros Asuntos</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div  class="form-group">
+            <label class="col-md-4 control-label" for="content">Contenido</label>
+            <div class="col-md-8">
+
+              <textarea placeholder="maximo 1000 caracteres"
+              ng-disabled="isShow()"
+              rows="6"
+              required
+              class="form-control"
+              ng-model="email.content"
+              style="width:100%">
+              </textarea>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="text-right">
+
+          </div>
+        </div>
+        <div  class="col-md-4">
+          <div class="text-right">
+            <div ng-if="settings.processing" style="height: 70px; width: 100%; text-align: right;" >
+              Solicitando envios... <img src="../img/white-loader.gif" />
+            </div>
+
+            <div class="titip-top-center titip-wrapped-large titip-primary">
+              <i style="font-size: 15px;" class="fa fa-question-circle"></i>
+              <span class="titip-content">
+                <strong>Información</strong><br>
+                Despues de este envío, los correos se envían paulatinamente durante los minutos posteriores, a todos los clientes.
+              </span>
+            </div>
+
+            <button ng-if="!isShow()" type="submit" class="btn btn-default"><i class="fa fa-envelope-o"></i> Enviar</button>
+
+            <a type="button" href="#/correos"  class="btn btn-default"><i class="fa fa-reply"></i> Volver</a>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div  ng-if="!isShow()"  class="block-area"  >
+  <div class="row">
+    <div class="col-md-6">
+
+      <div ng-show="!validateTheForm" class="alert alert-danger">
+        <strong>Información</strong> Faltan campos obligatorios y/o indicó datos erroneos.
+      </div>
+
+      <div ng-show="settings.success" class="alert alert-info">
+        <strong>Información</strong> {{settings.success}}
+      </div>
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div>

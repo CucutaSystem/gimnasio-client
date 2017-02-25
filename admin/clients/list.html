@@ -1,0 +1,163 @@
+<h4 class="page-title">Listado de clientes</h4>
+
+
+<div class="block-area">
+<div class="row">
+  <div class="col-md-3">
+    <a class="btn btn-sm" href="#/clientes/crear">
+      <span class="glyphicon glyphicon-plus-sign" ></span>
+      Registrar Cliente
+    </a>
+    <a class="label label-danger" style="cursor:pointer;" ng-click="getData()">
+      <i class="fa fa-arrow-circle-down"></i><b> {{msg_btn_deletes}}</b>
+    </a>
+  </div>
+  <div class="col-md-9">
+
+    <div class="form-group">
+      <div class="col-md-6">
+        <div class="input-group">
+          <input  ng-enter="find()" ng-model="filtertext" type="search" class="form-control" placeholder="Indique ID, nombres ó apellidos">
+            <span class="input-group-btn">
+            <button ng-click="find()"  class="btn btn-default" type="button"> <i class="fa fa-search"></i> Buscar</button>
+          </span>
+        </div><!-- /input-group -->
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-md-3">
+        <div class="input-group">
+          <label class="col-md-4" for="">Edad</label>
+          <div class="col-md-8" >
+            <select ng-change="filterForAge()" ng-model="currentAgeFilter"  class="form-control" >
+              <option  value="0">Todas</option>
+              <option  value="1">Niños</option>
+              <option  value="2">Jovenes</option>
+              <option  value="3">Adultos</option>
+              <option  value="4">Tercera Edad</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-md-3">
+        <div class="input-group">
+          <label class="col-md-4" for="">Genero</label>
+          <div class="col-md-8" >
+            <select ng-change="filterForGender()" ng-model="currentGenderFilter"  class="form-control" >
+              <option  value="0">Todas</option>
+              <option  value="F">Femenino</option>
+              <option  value="M">Masculino</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+</div>
+
+
+
+<!-- Table Striped -->
+<div class="block-area" id="tableStriped">
+    <div class="table-responsive overflow">
+        <table class="tile table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                      Estado
+                    </th>
+                    <th>Identificación</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th># Celular</th>
+                    <th>Email</th>
+                    <th colspan="4">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="(key,client) in data | startFrom:currentPage*pageSize | limitTo:pageSize ">
+
+                <td ng-init="staterow(key,client.id)" >
+                  <div class="circle-{{arrstates[key]}}-status">
+
+                  </div>
+                </td>
+                <td>{{client.identification.abbreviation}} {{client.identification_number}}</td>
+                <td>{{client.name}}</td>
+                <td>{{client.last_name}}</td>
+                <td>{{client.cell_phone}}</td>
+                <td>{{client.email}}</td>
+                <td>
+                  <a href="#/pagos/crear/{{client.id}}">
+                    <span class="fa fa-usd"></span> Registrar Pago
+                  </a>
+                </td>
+                <td>
+                  <a href="#/historias/crear/{{client.id}}">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    Historia Clínica</a>
+                </td>
+
+                <td>
+                  <a href="#/clientes/detallar/{{client.id}}">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Detallar</a>
+                </td>
+
+                <td>
+                  <a  ng-if="!(user.name === 'Atención Gym')"  href="#/clientes/editar/{{client.id}}">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Editar</a>
+                </td>
+
+                <td ng-show="client.activo == 1"  >
+                  <div  ng-if="!(user.name === 'Atención Gym')"  >
+
+                    <a style="cursor: pointer;" ng-click="remove(client.id)" >
+                      <span class="glyphicon glyphicon-trash"></span>
+                      Eliminar</a>
+                  </div>
+                </td>
+
+                <td ng-show="client.activo == 0" >
+                  <div  ng-if="!(user.name === 'Atención Gym')"  >
+                    <a style="cursor: pointer; color: #FFDB6D;" ng-click="remove(client.id)" >
+                      <span class="glyphicon glyphicon-refresh"></span>
+                      Restaurar</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-include="'./btns-pagination.html'"></div>
+</div>
+
+
+<div class="block-area">
+  <div class="row">
+    <div class="col-md-8">
+      <div ng-include="'./legend-status.html'"></div>
+    </div>
+    <div class="col-md-4">
+      <div ng-include="'./clients/export_options.html'"></div>
+    </div>
+  </div>    
+</div>
+
+<div class="block-area">
+<div ng-if="data < 1" class="alert alert-info" >
+  <strong>Información: </strong> No hay registros de clientes en el momento ó con el <strong>filtro especificado.</strong>
+</div>
+</div>

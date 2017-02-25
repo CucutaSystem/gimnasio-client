@@ -1,0 +1,54 @@
+<div ng-show="isProcessDownload" style="height: 70px; width: 100%; text-align: right;" >
+  <center>
+  Generando... <img src="../img/white-loader.gif" />
+  </center>
+</div>
+
+<div style="background: #FFF; color: #000;" class="panel panel-default">
+  <div class="panel-body">
+    <b> <span class="glyphicon glyphicon-print"></span> Opciones de descarga para impresión</b>
+    <div class="titip-top-left titip-wrapped-large titip-primary">
+      <i style="font-size: 15px;" class="fa fa-question-circle"></i>
+      <span class="titip-content">
+        <strong>Información</strong><br>
+        Los clientes  que aún no registran un primer pago, no tienen fecha final del plan.
+      </span>
+    </div>
+
+    <div class="titip-top-left titip-wrapped-large titip-primary">
+      <i style="font-size: 15px;" class="fa fa-question-circle"></i>
+      <span class="titip-content">
+        <strong>Información</strong><br>
+        A diferencia del excel, el formato pdf no trae todos los datos de los clientes, esto con el fin de ajustarse al formato de impresión.
+      </span>
+    </div>
+
+    <br/>
+    <br/>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6">
+      <p>
+      <b>Excel</b><br/>
+      <a style=" cursor:pointer; color: #2D1C61;" ng-click="downloadExport(all_to_xls,'ms-excel')" >
+      <i class="glyphicon glyphicon-download-alt"></i>Todos los clientes
+      </a>
+       <br/>
+      <a style=" cursor:pointer; color: #2D1C61;" ng-click="downloadExport(all_to_xls_1,'ms-excel')" ><i class="glyphicon glyphicon-download-alt"></i>Clientes al día</a> <br/>
+      <a style=" cursor:pointer; color: #2D1C61;" ng-click="downloadExport(all_to_xls_2,'ms-excel')" ><i class="glyphicon glyphicon-download-alt"></i>Clientes Por Vencer</a> <br/>
+      <a style=" cursor:pointer; color: #2D1C61;" ng-click="downloadExport(all_to_xls_3,'ms-excel')" ><i class="glyphicon glyphicon-download-alt"></i>Clientes Por Vencidos</a> <br/>
+      </p>
+      </div>
+      <div class="col-md-6">
+        <p>
+        <b>Pdf</b><small><i>(Menos datos)</i></small><br/>
+        <a style="  cursor:pointer; color: #2D1C61;" ng-click="downloadExport(all_to_pdf,'pdf')" ><i class="glyphicon glyphicon-download-alt"></i>Todos los clientes</a> <br/>
+        <a style=" cursor:pointer; color: #2D1C61;" ng-click="downloadExport(all_to_pdf_1,'pdf')"><i class="glyphicon glyphicon-download-alt"></i>Clientes al día</a> <br/>
+        <a style=" cursor:pointer; color: #2D1C61;"  ng-click="downloadExport(all_to_pdf_2,'pdf')" ><i class="glyphicon glyphicon-download-alt"></i>Clientes Por Vencer</a> <br/>
+        <a style="  cursor:pointer; color: #2D1C61;" ng-click="downloadExport(all_to_pdf_3,'pdf')" ><i class="glyphicon glyphicon-download-alt"></i>Clientes Por Vencidos</a> <br/>      
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

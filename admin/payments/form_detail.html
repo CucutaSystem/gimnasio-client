@@ -1,0 +1,190 @@
+<div class="block-area"  >
+
+  <h3 class="block-title"><b>{{client.name}} {{client.last_name}}</b>
+  </h3>
+  <div class="label {{status.css}}" >
+    <span>{{status.msg}}</span>
+  </div>
+
+  <div class="tile padding-form">
+
+    <form class="form-horizontal">
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <!-- Select Basic -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="identifications_id">Tipo Identificación</label>
+            <div class="col-md-7">
+
+              <select required disabled id="identifications_id"
+              class="form-control"
+              ng-model="client.identifications_id" ng-options="item.id as item.name for item in identifications" >
+              <option value="">Seleccione</option>
+            </select>
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="identification_number">Número Identificación</label>
+          <div class="col-md-8">
+            <input readonly id="identification_number" ng-model="client.identification_number" type="text" placeholder="" class="form-control input-md" required="">
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_birth">Fecha Nacimiento</label>
+          <div class="col-md-5">
+
+              <input
+              placeholder="yyyy/mm/dd"
+              readonly=""
+              type="text"
+              class="form-control"
+              datepicker-popup="{{settings.dateFormat}}"
+              ng-model="client.date_birth"
+              is-open="settings.openedDateBirthday"
+              ng-required="true"
+              close-text="Close"
+              />
+
+          </div>
+          <div class="col-md-3">
+            <strong>{{age}}</strong>
+            años
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="fixed_telephone">Teléfono Fijo</label>
+          <div class="col-md-8">
+            <input readonly id="fixed_telephone" ng-model="client.fixed_telephone" type="number" placeholder="Solo números" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="cell_phone">Número Celular</label>
+          <div class="col-md-8">
+            <input readonly id="cell_phone" ng-model="client.cell_phone" type="number" placeholder="Solo numeros" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="residence_address">Dirección Residencia</label>
+          <div class="col-md-8">
+            <div class="border-content-texarea">
+              {{client.residence_address}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Correo Electrónico</label>
+          <div class="col-md-8">
+            <input readonly id="email" ng-model="client.email" type="email" placeholder="correo@correo.com" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="risk_factors">Factores de riesgo</label>
+          <div class="col-md-8">
+            <div class="border-content-texarea">
+              <p align="justify">
+                {{client.risk_factors}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="plans_id">Estado de cuenta</label>
+          <div class="col-md-8">
+            <div style="background-color:#82B364; color:#000000;" class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    Plan Actual: <strong>{{client.plan.name}}</strong><br/>
+                    <strong>${{client.plan.value}}</strong><br/><br/>
+                    <i><strong>{{days}} días</strong> (Con bonos)</i>
+                  </div>
+                  <div class="col-md-6">
+                    <p align="justify" >
+                      {{client.plan.description}}
+                    </p>
+                    <p>
+                      <strong>Inicio</strong> {{client.effective_starting_date}}<br/>
+                      <strong>Fin</strong> {{client.effective_end_date}}
+                    </p>
+                  </div>
+                </div>
+                <div class="titip-top-right titip-wrapped-large titip-primary">
+                  <i style="font-size: 15px;" class="fa fa-question-circle"></i>
+                  <span class="titip-content">
+                    <strong>Información</strong><br>
+                    Despues de pagar, acá aparecerán los días actuales que pueden incluir posibles bonos (Días extras) y/o días acumulados de planes anteriores.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+  </form>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="titip-top-right titip-wrapped-large titip-primary">
+        <i style="font-size: 15px;" class="fa fa-question-circle"></i>
+        <span class="titip-content">
+          <strong>Información</strong><br>
+          Al registrar el pago podrás imprimir una factura
+        </span>
+      </div>
+      </div>
+      <div class="col-md-12">
+
+      <div class="btn-group" role="group" >
+        <a href="#" class="btn btn-default"><i class="fa fa-usd"></i> Registrar pago</a>
+        <a href="#" class="btn btn-default"><i class="fa fa-pencil-square-o"></i> Editar usuario</a>
+        <a href="#" class="btn btn-default"><i class="fa fa-times"></i> Eliminar usuario</a>
+        <a href="#/clientes" class="btn btn-default"><i class="fa fa-list-ul"></i> Ir listado clientes</a>
+        <a href="#/clientes/crear" class="btn btn-default"><i class="fa fa-user"></i> Registrar otro cliente</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="block-area"  >
+<div class="row">
+  <div class="col-md-6">
+
+    <div ng-show="settings.success" class="alert alert-info">
+      <strong>Información</strong> {{settings.success}}
+    </div>
+
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+</div>

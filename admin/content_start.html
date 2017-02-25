@@ -1,0 +1,108 @@
+                <h4 class="page-title">INICIO</h4>
+
+                <div ng-include="'./panel-amounts.html'">  </div>
+
+                <hr class="whiter" />
+
+                <!-- Main Widgets -->
+
+                <div class="block-area">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!--  Recent Bonds -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="tile">
+                                        <h2 class="tile-title">Ultimos Bonos</h2>
+
+                                        <div class="listview narrow">
+
+                                            <div ng-repeat="bond in bonds" class="media p-l-5">
+                                                <div class="pull-left">
+                                                    <h3>{{bond.duration_days}}</h3>
+                                                    días
+                                                </div>
+                                                <div class="media-body">
+                                                    <small class="text-muted">" Hasta <strong><i>{{bond.effective_date}}</i></strong> </small><br/>
+                                                    <a class="t-overflow" href="">{{bond.name}}</a>
+                                                    <p>{{bond.description}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="media p-5 text-center l-100">
+                                                <a href="#/bonos"><small style="color: #ffffff;">VER TODOS</small></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                  <!-- Quick Postin -->
+                                  <div ng-controller="EmailCreateCtrl" class="tile">
+                                      <h2 class="tile-title">Enviar Correo</h2>
+                                      <form novalidate name="theFormEmail" ng-submit="submit(theFormEmail)" role="form" class="p-15">
+
+                                          <div class="form-group m-b-15">
+                                              <label>Título</label>
+                                              <input ng-disabled="isShow()" id="title" ng-model="email.title" type="text" placeholder="" class="form-control input-md" required="">
+                                          </div>
+
+                                          <div class="form-group m-b-15">
+                                              <label>Motivo</label>
+                                              <select ng-disabled="isShow()" id="reason" ng-model="email.reason" required class="form-control">
+                                                  <option value="">Seleccione...</option>
+                                                  <option value="Promoción">Promoción</option>
+                                                  <option value="Bono">Bono</option>
+                                                  <option value="Descuento">Descuento</option>
+                                                  <option value="Otros Asuntos">Otros Asuntos</option>
+                                              </select>
+                                          </div>
+
+                                          <div class="form-group m-b-15">
+                                              <label>Contenido</label>
+                                              <div class="col-md-12">
+                                                <textarea placeholder="maximo 1000 caracteres"
+                                                ng-disabled="isShow()"
+                                                rows="6"
+                                                required
+                                                class="form-control"
+                                                ng-model="email.content"
+                                                style="width:100%">
+                                                </textarea>
+                                                <br/>
+                                              </div>
+                                          </div>
+
+                                          <div ng-if="settings.processing" style="height: 70px; width: 100%; text-align: right;" >
+                                            Solicitando envios... <img src="../img/white-loader.gif" />
+                                          </div>
+
+                                          <button type="submit" class="btn btn-sm">Enviar</button>
+                                          <button type="reset" class="btn btn-sm">Limpiar</button>
+
+                                      </form>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <!-- USA Map -->
+                            <div class="tile">
+                                <h2 class="tile-title">Calendario</h2>
+                                <div class="p-t-10 p-r-5 p-b-5">
+                                  <div ui-calendar ng-model="eventSourcesCalendar"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+<script type="text/javascript">
+  window.scrollTo(0,0);
+</script>

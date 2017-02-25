@@ -1,0 +1,96 @@
+<h4 class="page-title">Listado de bonos</h4>
+
+
+<div class="block-area">
+<div class="row">
+  <div class="col-md-6">
+    <a class="btn btn-sm" href="#/bonos/crear">
+      <span class="glyphicon glyphicon-plus-sign" ></span>
+      Registrar Bono
+    </a>
+    <a class="label label-danger" style="cursor:pointer;" ng-click="getData()">
+      <i class="fa fa-arrow-circle-down"></i><b> {{msg_btn_deletes}}</b>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <div class="col-md-12">
+        <div class="input-group">
+          <input ng-enter="find()" ng-model="filtertext" type="search" class="form-control" placeholder="Indique nombre del bono">
+            <span class="input-group-btn">
+            <button ng-click="find()" class="btn btn-default" type="button"><i class="fa fa-search"></i> Buscar</button>
+          </span>
+        </div><!-- /input-group -->
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<!-- Table Striped -->
+<div class="block-area" id="tableStriped">
+    <div class="table-responsive overflow">
+        <table class="tile table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Duración</th>
+                    <th>Disponible hasta</th>
+                    <th colspan="3">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="bond in data | startFrom:currentPage*pageSize | limitTo:pageSize ">
+
+                <td>
+                  {{bond.name}}
+                  <div ng-show="date > bond.effective_date" class="alert-warning">
+                    Vencido
+                  </div>
+                </td>
+                <td>{{bond.duration_days}} días</td>
+                <td>{{bond.effective_date}}</td>
+
+                <td>
+                  <a href="#/bonos/detallar/{{bond.id}}">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Detallar</a>
+                </td>
+
+                <td>
+                  <a href="#/bonos/editar/{{bond.id}}">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Editar</a>
+                </td>
+
+                <td ng-show="bond.activo == 1"  >
+                  <div>
+
+                    <a style="cursor: pointer;" ng-click="remove(bond.id)" >
+                      <span class="glyphicon glyphicon-trash"></span>
+                      Eliminar</a>
+                  </div>
+                </td>
+
+                <td ng-show="bond.activo == 0" >
+                  <div>
+                    <a style="cursor: pointer; color: #FFDB6D;" ng-click="remove(bond.id)" >
+                      <span class="glyphicon glyphicon-refresh"></span>
+                      Restaurar</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-include="'./btns-pagination.html'"></div>
+</div>
+
+<div class="block-area">
+<div ng-if="data < 1" class="alert alert-info" >
+  <strong>Información: </strong> No hay registros de bonos en el momento ó con el <strong>filtro especificado.</strong>
+</div>
+</div>

@@ -1,0 +1,119 @@
+<div class="block-area"  >
+  <div class="tile padding-form">
+    <form novalidate name="theFormBond" ng-submit="submit(theFormBond)" class="form-horizontal">
+
+      <div class="row">
+        <div class="col-md-12">
+
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Nombre</label>
+            <div class="col-md-8">
+              <input ng-disabled="isShow()" id="name" ng-model="bond.name" type="text" placeholder="" class="form-control input-md" required="">
+              <div class="alert alert-danger" ng-show="existsNameText == 1">
+                <i class="fa fa-exclamation-triangle"></i> Este nombre ya se encuentra en el sistema
+              </div>
+              <div class="alert alert-success" ng-show="existsNameText == 2">
+                <i class="fa fa-check-square-o"></i> Este nombre esta disponible <i class="fa fa-smile-o"></i>
+              </div>
+            </div>
+          </div>
+
+
+          <div  ng-if="!isEdit()" class="form-group">
+            <label class="col-md-4 control-label" for="duration_days">Duración</label>
+            <div class="col-md-2">
+              <input ng-disabled="isShow()" id="duration_days" min="1" ng-model="bond.duration_days" type="number" placeholder="" class="form-control input-md" required="">
+              <div class="titip-top-right titip-wrapped-large titip-primary">
+                <i style="font-size: 15px;" class="fa fa-question-circle"></i>
+                <span class="titip-content">
+                  <strong>Información</strong><br>
+                  Esta duración no se podrá modificar posteriormente.
+                </span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <strong>días</strong>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="effective_date">Disponible hasta</label>
+            <div class="col-md-8">
+
+              <p class="input-group">
+                <input
+                ng-disabled="isShow()"
+                id="effective_date"
+                ng-model="bond.effective_date"
+                ng-change="changeAge()"
+                placeholder="yyyy/mm/dd"
+                readonly=""
+                type="text"
+                class="form-control"
+                datepicker-popup="{{settings.dateFormat}}"
+                is-open="settings.openedDateBirthday"
+                ng-required="true"
+                close-text="Close"
+                ng-click="openDateEndBond($event)" />
+
+                <span ng-if="!isShow()" class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openDateEndBond($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="description">Descripción</label>
+            <div class="col-md-8">
+              <textarea ng-disabled="isShow()" rows="6" required style="width:100%" class="form-control" id="description" ng-model="bond.description"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+
+
+        </div>
+        <div  class="col-md-4">
+          <div class="text-right">
+
+            <div ng-if="settings.processing" style="height: 70px; width: 100%; text-align: right;" >
+              Enviando... <img src="../img/white-loader.gif" />
+            </div>            
+
+            <button ng-if="!isShow()" type="submit" class="btn btn-default"><i class="fa fa-floppy-o"></i> Guardar</button>
+            <a type="button" href="#/bonos"  class="btn btn-default"><i class="fa fa-reply"></i> Volver</a>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div  ng-if="!isShow()"  class="block-area"  >
+  <div class="row">
+    <div class="col-md-6">
+
+      <div ng-show="!validateTheForm" class="alert alert-danger">
+        <strong>Información</strong> Faltan campos obligatorios y/o indicó datos erroneos.
+      </div>
+
+      <div ng-show="settings.success" class="alert alert-info">
+        <strong>Información</strong> {{settings.success}}
+      </div>
+
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div>

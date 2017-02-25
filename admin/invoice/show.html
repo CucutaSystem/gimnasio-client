@@ -1,0 +1,161 @@
+<h4 class="page-title">Factura</h4>
+<div class="block-area"  >
+  <h3 class="block-title"><b>{{client.name}} {{client.last_name}}</b></h3>
+  <div class="tile padding-form"  >
+    <div id="print-invoice" >
+    <center>
+      <div id="cont-invoiment" class="panel panel-default">
+
+        <div style="background: #ffffff; color: #000000; min-width: 700px; max-width: 700px;" class="panel-body">
+          <table width="100%" class="row">
+            <tr>
+              <td>
+                <center>
+                  <img src="img/logooficial_gimnasio_p1.jpg" alt="Logo Oficial">
+                </center>
+              </td>
+              <td>
+                <center>
+                  <h4><b>Gimnasio  Gimnasio </b></h4>
+                  <i style="font-size:10px;">Centro De Acondicionamiento Físico<br/> Dirección exacta</i>
+                </center>
+              </td>
+              <td>
+                <center>
+                  <img src="{{url_image_barcode}}" alt="Barcode" style="width:120px; height:50px;" /><br/>
+                  <b>{{barcodewithformat}}</b>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <br/>
+
+          <table width="100%" class="cssprint">
+            <tr>
+              <th style=" background-color: #9FB73E; color: white; border: 1px solid #000000;" class="cssprint">
+                N° Factura:
+              </th>
+              <td>
+                {{barcodewithformat}}
+              </td>
+              <th class="cssprint">
+                Fecha
+              </th>
+              <td>
+                {{invoice.created_at | limitTo: 10}}
+              </td>
+            </tr>
+
+            <tr>
+              <th class="cssprint">
+                Cliente:
+              </th>
+              <td>
+                {{client.name}} {{client.last_name}}
+              </td>
+              <th class="cssprint">
+                Identificación
+              </th>
+              <td>
+                {{identification.abbreviation}} {{client.identification_number}}
+              </td>
+            </tr>
+            <tr>
+              <th class="cssprint" >
+                Dirección
+              </th>
+              <td colspan="3">
+                {{client.residence_address}}
+              </td>
+            </tr>
+
+          </table>
+
+          <br/>
+          <hr/>
+
+          <table width="100%" >
+            <tr>
+              <th class="cssprint" >
+                Total Días
+              </th>
+              <td>
+                {{days}}
+              </td>
+              <td>
+                <b>Inicio: </b> {{client.effective_starting_date}}
+              </td>
+              <td>
+                <b>Fin: </b> {{client.effective_end_date}}
+              </td>
+            </tr>
+            <tr>
+              <th class="cssprint" >
+                Observaciones
+              </th>
+              <td colspan="3">
+                <b>{{invoice.observations}}</b>
+              </td>
+            </tr>
+            <tr>
+              <th class="cssprint" >
+                Total a Cancelar
+              </th>
+              <td colspan="3">
+                <b>$ {{invoice.total_value}} PESOS COLOMBIANOS</b>
+              </td>
+            </tr>
+
+          </table>
+          <br/>
+          <center><i>info@mail.com</i></center>
+        </div>
+        <br/>
+        <big><a class="btn btn-default" style="cursor:pointer;" ng-if="isPagePrint" href="javascript:location.reload();"> <i class="fa fa-reply"></i> Volver</a></big>
+      </div>
+    </center>
+  </div>
+    <div class="btn-group" role="group" >
+    <a ng-click="printInvoice()" class="btn btn-default" style="cursor: pointer;"><i class="fa fa-print"></i> Imprimir</a>
+    <a href="#/pagos/crear/{{client.id}}" class="btn btn-default"><i class="fa fa-pencil-square-o"></i> Registrar otro pago</a>
+    <a href="#/clientes/crear" class="btn btn-default"><i class="fa fa-user"></i> Registrar otro cliente</a>
+    <a href="#/clientes" class="btn btn-default"><i class="fa fa-list-ul"></i> Ir listado clientes</a>
+    <a ng-if="isCanInvalidate" ng-click="removePayment(invoice.id)" class="btn btn-default"><i class="fa fa-times"></i> Invalidar pago</a>
+    <div ng-if="isCanInvalidate" class="titip-top-center titip-wrapped-large titip-primary">
+      <i style="font-size: 15px;" class="fa fa-question-circle"></i>
+      <span class="titip-content">
+        <strong>Información</strong><br>
+        Solo se puede invalidar un pago el mismo día que se registro.
+      </span>
+    </div>
+    </div>
+
+    <div id="img-invoice">
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+$(function() {
+
+  console.log('Function');
+
+  function printInvoice(){
+
+    html2canvas($("#print-invoice"), {
+      onrendered: function(canvas) {
+        theCanvas = canvas;
+        document.body.appendChild(canvas);
+
+        // Convert and download as image
+        Canvas2Image.saveAsPNG(canvas);
+        $("#img-invoice").append(canvas);
+        // Clean up
+        //document.body.removeChild(canvas);
+      }
+    });
+  }
+});
+</script>

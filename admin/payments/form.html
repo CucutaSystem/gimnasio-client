@@ -1,0 +1,165 @@
+<div class="block-area"  >
+
+  <h3 class="block-title"><b>{{client.name}} {{client.last_name}}</b></h3>
+
+  <div class="label {{status.css}}" >
+    <span>{{status.msg}}</span>
+  </div>
+
+  <div class="tile padding-form"  >
+    <form novalidate name="theFormPayment" ng-submit="submit(theFormPayment)" class="form-horizontal">
+
+
+
+      <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="plans_id">Plan Actual</label>
+      <div class="col-md-8">
+
+        <select required
+          ng-show="changePlanClient"
+          id="plans_id"
+          class="form-control"
+          ng-change="changePlan()"
+          ng-model="payment.plan"
+          ng-options="item as [item.name,item.duration,' días',' - $',item.value].join(' ') for item in plans" >
+          <option value="">Seleccione...</option>
+        </select>
+
+        <div ng-show="!changePlanClient" class="border-content-texarea">
+        {{payment.plan.name}} <strong>{{payment.plan.duration}} días</strong>  <i>${{payment.plan.value}}</i> <a class="btn btn-sm" style="cursor: pointer;" ng-click="changePlanClient = true" >Cambiar</a>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="percentage_discount">Descuento Porcentual<br/><i><strong>(opcional)</strong></i></label>
+      <div class="col-md-2">
+        <select ng-change="changePercentageDiscount()" required id="percentage_discount" ng-model="payment.percentage_discount"
+          class="form-control"
+          ng-options="p as p for p in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]" >
+        </select>
+      </div>
+      <div class="col-md-3">
+        <h3><strong>%</strong></h3>
+      </div>
+    </div>
+
+  <!-- Select Basic -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="discounts_id">Agregar Descuento <br/><i><strong>(opcional)</strong></i></label>
+    <div class="col-md-8">
+      <select  ng-change="changeDiscountCOP()" id="discounts_id" ng-model="payment.discount"
+        class="form-control"
+        ng-options="item as [item.name,' - $',item.value,' pesos (COP)'].join(' ') for item in discounts" >
+        <option value="">Seleccione</option>
+      </select>
+      <p align="justify">
+        {{current_discount}}
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+<div style="background-color: #2A9B46;" class="panel panel-default">
+  <div class="panel-body">
+    <!-- Select Basic -->
+    <div class="form-group">
+      <div class="col-md-2">
+        <div class="text-center">
+          <i class="fa fa-gift" style="font-size: 4em;"></i>
+        </div>
+      </div>
+      <label class="col-md-2 control-label" for="bonds_id">Agregar Bono <br/><i><strong>(opcional)</strong></i></label>
+      <div class="col-md-8">
+        <select  ng-change="changeBondDays()"
+        class="form-control"  id="bonds_id" ng-model="payment.bond"
+        ng-options="item as [item.name,' + ',item.duration_days,' días'].join(' ') for item in bonds" >
+        <option value="">Seleccione</option>
+      </select><br/>
+      <p align="justify">
+        {{current_bond}}
+      </p>
+      <br/>
+      <strong>Solo aparecen los bonos vigentes. Si los hay.</strong>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="observations">Observaciones <br/><i><strong>(opcional)</strong></i></label>
+  <div class="col-md-8">
+    <textarea  style="width:100%" class="form-control" id="observations" ng-model="payment.observations"></textarea>
+  </div>
+</div>
+
+
+
+<hr/>
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="discounts_id">Total <br/><strong><aside>COP.</aside></strong></label>
+  <div class="col-md-3">
+      <h3> ${{payment.total_value}} <small>pesos</small></h3>
+  </div>
+  <div class="col-md-3">
+    <h3>{{payment.days_without_save}} <small>días</small>
+      <i class="fa fa-moon-o"><i class="fa fa-sun-o"></i></i>
+    </h3>
+  </div>
+</div>
+
+
+
+<br/>
+<div class="row">
+  <div class="col-md-8">
+
+  </div>
+  <div class="col-md-4">
+    <div class="text-right">
+      <div ng-if="settings.processing" style="height: 70px; width: 100%; text-align: right;" >
+        Enviando... <img src="../img/white-loader.gif" />
+      </div>
+      
+      <button type="submit" class="btn btn-default"><i class="fa fa-floppy-o"></i> Pagar y Generar Factura</button>
+      <a type="button" href="#/clientes"  class="btn btn-default"><i class="fa fa-reply"></i> Volver</a>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+
+
+</div>
+
+
+
+<div class="block-area"  >
+  <div class="row">
+    <div class="col-md-6">
+
+      <div ng-show="!validateTheForm" class="alert alert-info">
+        <strong>Información</strong> Faltan campos obligatorios y/o indicó datos erroneos.
+      </div>
+
+      <div ng-show="settings.success" class="alert alert-info">
+        <strong>Información</strong> {{settings.success}}
+      </div>
+
+
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div>

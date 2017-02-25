@@ -1,0 +1,2739 @@
+  <!-- formulario buscar -->
+ 
+<div id="historyprint" >
+<div class="block-area"  >
+
+  <h3 class="block-title"><b>{{client.name}} {{client.last_name}}</b>
+  </h3>
+  <div class="label {{status.css}}" >
+    <span>{{status.msg}}</span>
+  </div>
+
+  <div class="tile padding-form">
+
+    <form class="form-horizontal">
+
+    <div class="row">
+        <div class="col-md-6">
+
+
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label"  >Hora: </label>
+          <div class="col-md-8">
+          <input disabled="" ng-model="hours" type="text" placeholder="" class="form-control input-md" >          
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label"  >Fecha: </label>
+          <div class="col-md-8">
+          <input disabled="" ng-model="date" type="text" placeholder="" class="form-control input-md" >          
+          </div>
+        </div>
+
+          <!-- Select Basic -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="identifications_id">Tipo Identificación</label>
+            <div class="col-md-7">
+
+              <select required disabled id="identifications_id"
+              class="form-control"
+              ng-model="client.identifications_id" ng-options="item.id as item.name for item in identifications" >
+              <option value="">Seleccione</option>
+            </select>
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="identification_number">Número Identificación</label>
+          <div class="col-md-8">
+            <input readonly id="identification_number" ng-model="client.identification_number" type="text" placeholder="" class="form-control input-md" required="">
+          </div>
+        </div>
+
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="gender">Genero</label>
+          <div class="col-md-8">
+            <label >
+              <input disabled="" readonly ng-model="client.gender" value="M" type="radio">
+              Masculino
+            </label>
+            <label>
+              <input disabled="" readonly ng-model="client.gender" value="F" type="radio">  
+              Femenino
+            </label>
+          </div>
+        </div>
+
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_birth">Fecha Nacimiento</label>
+          <div class="col-md-5">
+
+              <input
+              ng-change="changeAge()"
+              placeholder="yyyy/mm/dd"
+              readonly=""
+              type="text"
+              class="form-control"
+              datepicker-popup="{{settings.dateFormat}}"
+              ng-model="client.date_birth"
+              is-open="settings.openedDateBirthday"
+              ng-required="true"
+              close-text="Close"
+              />
+
+          </div>
+          <div class="col-md-3">
+            <strong>{{age}}</strong>
+            años
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="fixed_telephone">Teléfono Fijo</label>
+          <div class="col-md-8">
+            <input readonly id="fixed_telephone" ng-model="client.fixed_telephone" type="number" placeholder="Sólo números" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="cell_phone">Número Celular</label>
+          <div class="col-md-8">
+            <input readonly id="cell_phone" ng-model="client.cell_phone" type="number" placeholder="Sólo numeros" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+       
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="profession">Profesión</label>
+          <div class="col-md-8">
+            <input readonly id="profession" ng-model="client.profession" type="text" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+     
+
+
+      </div>
+
+      <div class="col-md-6">
+
+     
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" >Estado Civil</label>
+                      <div class="col-md-8">
+                      
+                      <div class="row">
+                        <div class="col-md-4">  
+                          <label >
+                            <input disabled=""  readonly="" ng-model="client.marital_status" value="S" type="radio">
+                            Soltero
+                          </label>
+                          <label>
+                          <input disabled=""  readonly=""  ng-model="client.marital_status" value="C" type="radio">  
+                            Casado
+                          </label>
+                        </div>  
+                        <div class="col-md-4"> 
+                          <label >
+                            <input disabled=""  readonly=""  ng-model="client.marital_status" value="D" type="radio">
+                            Divorciado
+                          </label>  
+                        </div> 
+                         <div class="col-md-4">
+                          <label>
+                            <input disabled=""  readonly="" ng-model="client.marital_status" value="U" type="radio">  
+                            Unión Libre
+                          </label>
+                         </div>
+
+                         <div class="col-md-4">
+                          <label>
+                            <input disabled=""  readonly="" ng-model="client.marital_status" value="V" type="radio">  
+                            Viudo
+                          </label>
+                         </div>
+
+
+                        </div>
+                     </div>  <!-- row-->
+
+                    </div>  <!-- cierre grupo-->
+
+
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="residence_address">Dirección Residencial</label>
+          <div class="col-md-8">
+            <div class="border-content-texarea">
+              {{client.residence_address}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Correo Electrónico</label>
+          <div class="col-md-8">
+            <input readonly id="email" ng-model="client.email" type="email" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+           <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >¿Discapacidad?</label>
+          <div class="col-md-8">
+            <input readonly="" ng-model="client.gs" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Entidad de Seguro</label>
+          <div class="col-md-8">
+            <input readonly="" ng-model="client.ensurance_entity" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+
+<div class="panel panel-default">
+  <div class="panel-body" style="background: #000000;" >
+
+        <div class="row">
+          <div class="col-md-6">
+            <b>En caso de accidente llamar a:</b>
+            <hr />
+          </div>
+          <div class="col-md-6">
+            <div class="text-right">
+              <img src="../img/cruz_roja.png" alt="logo cruz roja">
+            </div>
+          </div>  
+        </div>
+        <br />
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Nombre </label>
+          <div class="col-md-8">
+            <input readonly=""  ng-model="client.name_guardian" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Parentesco: </label>
+          <div class="col-md-8">
+            <input readonly=""  ng-model="client.relationship" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Teléfono: </label>
+          <div class="col-md-8">
+            <input readonly=""  ng-model="client.phone_guardian" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+  </div>
+</div>
+
+       
+      </div>
+    </div><br/>
+
+    </form>
+  </div>
+</div>
+
+
+
+<div class="block-area"  >
+  <div class="tile padding-form">
+    <form novalidate name="theFormClinical2" ng-submit="submit(theFormClinical2)" 
+    class="form-horizontal ">
+
+    <div >
+
+
+
+        <div id="tabs" >
+
+            <ul class="tabsclinical">
+                <li class="tabsclinical" ng-repeat="tab in tabs" 
+                    ng-class="{activeClinical:isActiveTab(tab.url)}" 
+                    ng-click="onClickTab(tab)">{{tab.title}}</li>
+            </ul >
+            <div id="mainViewClinical">
+                <div ng-include="currentTab"></div>
+            </div>
+        </div>
+
+        <script type="text/ng-template" id="AntecedentesPersonales">
+          <div class="specialPaddingFormClinical" id="AntecedentesPersonales"><br/>
+             
+          <!--inicio formulario antecedentes pesonales--> 
+            <div class="row">
+                    <div class="col-md-10">
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">En los últimos tres meses visito a :    </label><br/>
+                      <div class="col-md-8">
+                      
+                        <div class="row">
+                          <div class="col-md-4">
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.last_three_months_visit_doctor" ng-true-value="1" ng-false-value="0">
+                          Médico
+                          </label><br/>
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.last_three_months_visit_orthopedist" ng-true-value="1" ng-false-value="0"> 
+                          Ortopedista
+                          </label><br/>
+                          </div>
+
+                          <div class="col-md-4">
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.last_three_months_visit_nutritionist" ng-true-value="1" ng-false-value="0">
+                          Nutricionista
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.last_three_months_visit_psychologist" ng-true-value="1" ng-false-value="0"> 
+                           Psicólogo
+                           </label><br/>           
+                          </div>
+                        </div>  <!-- cierre row interno-->
+                      </div>
+                    </div>
+
+                     <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" >Le han dicho que tiene :    </label><br/>
+                      <div class="col-md-8">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_high_pressure" ng-true-value="1" ng-false-value="0">
+                              Presión Alta
+                              </label><br/>
+                              <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_low_pressure" ng-true-value="1" ng-false-value="0"> 
+                              Presión Baja
+                              </label><br/>
+                              <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_myocardial_infarction" ng-true-value="1" ng-false-value="0">
+                              Infarto de Miocardio
+                              </label><br/>
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_asthma" ng-true-value="1" ng-false-value="0"> 
+                               Asma
+                               </label><br/>  
+                              <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_anemia" ng-true-value="1" ng-false-value="0">
+                              Anemia
+                              </label><br/>
+                             <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_hernias" ng-true-value="1" ng-false-value="0"> 
+                              Hernias
+                              </label><br/>
+                              <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_tiroides" ng-true-value="1" ng-false-value="0">
+                              Transtornos Tiroideos
+                              </label><br/>
+                              <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_enfisema" ng-true-value="1" ng-false-value="0">
+                              Enfisema
+                              </label><br/>
+                              <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_malaria" ng-true-value="1" ng-false-value="0">
+                              Paludismo
+                              </label><br/>
+                            </div>  
+
+                            <div class="col-md-4">
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_bronchitis" ng-true-value="1" ng-false-value="0"> 
+                               Bronquitis
+                               </label><br/>  
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_diabetes"  ng-true-value="1" ng-false-value="0">
+                              Diabetes
+                              </label><br/>
+                              <label >
+                               <input type="checkbox" ng-model="clinicalriesgocliente.say_has_hipoglycemia" ng-true-value="1" ng-false-value="0">
+                              Hipoglicemia
+                              </label><br/>
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_anorexia" ng-true-value="1" ng-false-value="0"> 
+                              Anorexia
+                               </label><br/>   
+                               <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_emf_alergic" ng-true-value="1" ng-false-value="0"> 
+                              Emf. Alérgicas
+                              </label><br/>
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_hepatitis"  ng-true-value="1" ng-false-value="0"> 
+                              Hepatitis
+                              </label><br/>
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_drop"  ng-true-value="1" ng-false-value="0">
+                              Gota
+                              </label><br/>
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_neoplasia"  ng-true-value="1" ng-false-value="0"> 
+                              Neoplasia
+                              </label><br/>
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_rheumatoid" ng-true-value="1" ng-false-value="0">
+                              Artritis Reumatoidea
+                              </label><br/>
+                            </div>  
+
+                            <div class="col-md-4">
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_depression" ng-true-value="1" ng-false-value="0">
+                              Depresión
+                              </label><br/>  
+                               <label >
+                              <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_enf_vascular" ng-true-value="1" ng-false-value="0">
+                              Enf. Vascular
+                              </label><br/>
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_rheumatic_fever"ng-true-value="1" ng-false-value="0">
+                              Fiebre Reumática
+                              </label><br/>
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_epilepsy" ng-true-value="1" ng-false-value="0">
+                               Epilepsia
+                              </label><br/>
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_enf_peptic_acid" ng-true-value="1" ng-false-value="0"> 
+                              Enf. Ácido Peptica
+                              </label><br/>
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_tonsillopharyngitis" ng-true-value="1" ng-false-value="0"> 
+                              Amigdalofaringítis
+                              </label><br/>
+                               <label >
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_colon" ng-true-value="1" ng-false-value="0">
+                              Enf. Cólon
+                              </label><br/>
+                              <label>
+                              <input type="checkbox" ng-model="clinicalriesgocliente.say_has_enf_renal" ng-true-value="1" ng-false-value="0"> 
+                              Enf. Renal
+                              </label><br/>  
+                              
+                            </div>
+                        </div>
+
+                       </div>
+                      </div><br>
+
+                   <!-- Text input-->
+                      <div class="form-group">
+                      <label class="col-md-4 control-label" >Aclaración: </label><br/>
+                      <div class="col-md-8">
+                        <textarea placeholder="Máximo 300 caracteres"
+                          rows="4"
+                          class="form-control"
+                          ng-model="clinicalriesgocliente.clarification"
+                          style="width:100%"> </textarea>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" >Exámenes Recientes</label><br/>
+                    <div class="col-md-8">
+                     <textarea placeholder="Ingrese los examenes que el cliente se ha realizado recientemente."
+                          rows="3"
+                          class="form-control"
+                          ng-model="clinicalriesgocliente.recent_reviews"
+                          style="width:100%"> </textarea>
+                    </div>
+                    </div>
+              </div><!--cierre columnas-->
+            </div><!--bcierre row-->
+            
+          </div>
+
+          <div class="text-center">
+            <br/>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('lehandicho')">Continuar</a>
+          </div>
+        </script>
+  
+        <script type="text/ng-template" id="lehandicho">
+            <div  class="specialPaddingFormClinical"  id="lehandicho"><br/>
+              <!--inicio formulario alguna vez le han dicho que tiene-->
+              
+              <div class="row">
+                
+                 <div class="col-md-10">
+
+                   <!-- Text input-->
+                    <div class="form-group">
+                      <B><label class="col-md-4 control-label" >Patología Cardiaca :    </label><br/>
+                      <div class="col-md-8">
+                      
+                      <div class="row">
+                        <div class="col-md-4">  
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.heart_diseases_arrhythmias" ng-true-value="1" ng-false-value="0">
+                           Aritmias
+                          </label><br/>
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.heart_diseases_thrombosis" ng-true-value="1" ng-false-value="0"> 
+                          Trombosis
+                          </label><br/>
+                        </div>  
+                        <div class="col-md-4"> 
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.heart_diseases_arteriosclerosis" ng-true-value="1" ng-false-value="0"> 
+                          Arterio-esclerosis
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.heart_diseases_heart_block" ng-true-value="1" ng-false-value="0">
+                          Bloqueo Cardiaco
+                          </label><br/>
+                         </div>  
+                         <div class="col-md-4"> 
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.heart_diseases_angina_chest" ng-true-value="1" ng-false-value="0"> 
+                          Angina Precordial
+                          </label><br/>  
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.heart_diseases_valvular" ng-true-value="1" ng-false-value="0">
+                           Valvulopatía
+                          </label><br/>
+                        </div>
+                     </div>  <!-- row-->
+
+                      </div>
+                    </div>  <!-- cierre grupo-->
+
+                       <!-- Text input-->
+                      <div class="form-group">
+                          <label class="col-md-4 control-label" >¿Qué le evita hacer ejercicio?    </label><br/>
+                        <div class="col-md-8">
+                          
+                          <div class="row">
+                            <div class="col-md-4">  
+                            <label >
+                            <input ng-click="otroejercicio()" ng-disabled="clinicalriesgocliente.avoid_exercise_other" type="checkbox" ng-model="clinicalriesgocliente.avoid_exercise_coronary_occlusion" ng-true-value="1" ng-false-value="0"> 
+                            Oclusión Coronaria
+                            </label><br/>
+                            <label >
+                            <input ng-click="otroejercicio()" ng-disabled="clinicalriesgocliente.avoid_exercise_other" type="checkbox" ng-model="clinicalriesgocliente.avoid_exercise_dysautonomia" ng-true-value="1" ng-false-value="0">
+                            Disautonomía
+                            </label><br/>
+                            </div>
+
+                            <div class="col-md-4"> 
+                            <label>
+                            <input ng-click="otroejercicio()" ng-disabled="clinicalriesgocliente.avoid_exercise_other" type="checkbox" ng-model="clinicalriesgocliente.avoid_exercise_aneurysm" ng-true-value="1" ng-false-value="0"> 
+                            Aneurisma
+                            </label><br/>
+                            <label >
+                            <input ng-click="otroejercicio()" ng-disabled="clinicalriesgocliente.avoid_exercise_other" type="checkbox" ng-model="clinicalriesgocliente.avoid_exercise_heart_murmur" ng-true-value="1" ng-false-value="0">
+                            Soplo Cardiaco
+                            </label><br/>
+                            </div>
+                            
+                            <div class="col-md-4">
+                            <label>
+                            <input  ng-disabled="shownotroejercicio" ng-click="otroejercicio2()" type="checkbox" ng-model="clinicalriesgocliente.avoid_exercise_other" ng-true-value="1" ng-false-value="0">
+                            Otro
+                            </label><br/>
+                            </div> <!-- cierre columna 3-->
+                          </div> <!-- cierre row -->
+                        </div>
+                      </div><!-- cierre grupo-->
+                    
+                          <div ng-show="showavoid">
+                            <!-- Text input-->
+                            <div class="form-group">
+                            <label class="col-md-4 control-label" > ¿Cuál? </label><br/>
+                            <div class="col-md-4">
+                            <input id="name" ng-model="clinicalriesgocliente.avoid_exercise_which" type="text" placeholder="" class="form-control input-md" >
+                            </div>
+                            </div>
+                          </div>
+
+
+                       <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" >Sufre de dolores de cabeza cuando:  </label><br/>
+                          <div class="col-md-8">
+                            
+                          <div class="row">
+                            <div class="col-md-4">  
+                              <label >
+                              <input ng-click="nosufre()" ng-disabled="clinicalriesgocliente.suffering_headaches_no" type="checkbox" ng-model="clinicalriesgocliente.suffering_headaches_rest" ng-true-value="1" ng-false-value="0">
+                               Esta en reposo
+                              </label><br/>
+                              <label >
+                              <input ng-click="nosufre()" ng-disabled="clinicalriesgocliente.suffering_headaches_no" type="checkbox" ng-model="clinicalriesgocliente.suffering_headaches_effort" ng-true-value="1" ng-false-value="0"> 
+                              Esta en esfuerzo
+                              </label><br/>
+                            </div>  
+                            <div class="col-md-4"> 
+                              <label>
+                              <input ng-click="nosufre()" ng-disabled="clinicalriesgocliente.suffering_headaches_no" type="checkbox" ng-model="clinicalriesgocliente.suffering_headaches_after_effort" ng-true-value="1" ng-false-value="0"> 
+                              Termina el esfuerzo
+                              </label><br/>
+                              <label>
+                              <input  ng-disabled="shownosufre" type="checkbox" ng-model="clinicalriesgocliente.suffering_headaches_no" ng-true-value="1" ng-false-value="0">
+                              No
+                              </label><br/>
+                             </div>  
+                          </div>  <!-- cierre row-->
+
+                          </div>
+                        </div>
+
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" >Ha tenido palpitaciones con :  </label><br/>
+                          <div class="col-md-8">
+                            
+                          <div class="row">
+                            <div class="col-md-4">  
+                              <label >
+                              <input ng-click="nopalpitaciones()" ng-disabled="clinicalriesgocliente.has_been_no" type="checkbox" ng-model="clinicalriesgocliente.has_been_pain" ng-true-value="1" ng-false-value="0">
+                               Dolor
+                              </label><br/>
+                              <label >
+                              <input ng-click="nopalpitaciones()" ng-disabled="clinicalriesgocliente.has_been_no" type="checkbox" ng-model="clinicalriesgocliente.has_been_sweat" ng-true-value="1" ng-false-value="0"> 
+                              Sudoración
+                              </label><br/>
+                              <label>
+                              <input ng-click="nopalpitaciones()" ng-disabled="clinicalriesgocliente.has_been_no" type="checkbox" ng-model="clinicalriesgocliente.has_been_mareo" ng-true-value="1" ng-false-value="0"> 
+                               Mareo
+                              </label><br/>
+                            </div>  
+                            <div class="col-md-4"> 
+                              <label>
+                              <input ng-click="nopalpitaciones()" ng-disabled="clinicalriesgocliente.has_been_no" type="checkbox" ng-model="clinicalriesgocliente.has_been_faint" ng-true-value="1" ng-false-value="0"> 
+                              Desmayo
+                              </label><br/>  
+                              <label >
+                              <input ng-click="nopalpitaciones()" ng-disabled="clinicalriesgocliente.has_been_no" type="checkbox" ng-model="clinicalriesgocliente.has_been_seizures" ng-true-value="1" ng-false-value="0">
+                               Convulsiones
+                              </label><br/>
+                              <label>
+                              <input ng-click="nopalpitaciones()" ng-disabled="clinicalriesgocliente.has_been_no" type="checkbox" ng-model="clinicalriesgocliente.has_been_vomiting" ng-true-value="1" ng-false-value="0"> 
+                              Vómito
+                              </label><br/>  
+                            </div>
+                             <div class="col-md-4"> 
+                              <label >
+                              <input ng-click="nopalpitaciones()" ng-disabled="clinicalriesgocliente.has_been_no" type="checkbox" ng-model="clinicalriesgocliente.has_been_blurry_vision" ng-true-value="1" ng-false-value="0">
+                              Visión Borrosa
+                              </label><br/>
+                              <label >
+                              <input ng-disabled="shownopalpitaciones" ng-click="ocultarpalpitaciones()" type="checkbox" ng-model="clinicalriesgocliente.has_been_no" ng-true-value="1" ng-false-value="0">
+                              No
+                              </label><br/>
+                            </div>
+                         </div>  <!-- row-->
+
+                       <div ng-show="showrelatedto">
+                            <label class="col-md-4 control-label" >Relacionadas con :  </label><br/>
+                          <div class="col-md-8">
+
+                            <div class="row">
+
+                                <div class="col-md-4">  
+                                  <label >
+                                  <input ng-click="otrorelacionadas()" ng-disabled="clinicalriesgocliente.related_to_other" type="checkbox" ng-model="clinicalriesgocliente.related_to_exercise" ng-true-value="1" ng-false-value="0">
+                                  El ejercicio
+                                  </label><br/>
+                                  <label >
+                                  <input ng-click="otrorelacionadas()" ng-disabled="clinicalriesgocliente.related_to_other" type="checkbox" ng-model="clinicalriesgocliente.related_to_main_meal" ng-true-value="1" ng-false-value="0"> 
+                                  Comida principal
+                                  </label><br/>
+                                  </div>
+
+                                <div class="col-md-4"> 
+                                  <label >
+                                  <input ng-click="otrorelacionadas()" ng-disabled="clinicalriesgocliente.related_to_other" type="checkbox" ng-model="clinicalriesgocliente.related_to_emotion" ng-true-value="1" ng-false-value="0"> 
+                                  Emoción
+                                  </label><br/>
+                                  <label>
+                                  <input ng-click="otrorelacionadas()" ng-disabled="clinicalriesgocliente.related_to_other" type="checkbox" ng-model="clinicalriesgocliente.related_to_cold" ng-true-value="1" ng-false-value="0">
+                                  Frío
+                                  </label><br/>
+                                  <label>
+                                  <input ng-disabled="showrelacionadas" ng-click="relacionadas()" type="checkbox" ng-model="clinicalriesgocliente.related_to_other" ng-true-value="1" ng-false-value="0">
+                                  Otro
+                                  </label><br/>
+                             </div>
+                            </div>  <!-- cierre row-->
+                          </div><!-- cierre columna-->
+                        </div><!-- cierre metodo-->
+                                
+                              <div ng-show="showrelatedto2">
+                                <div class="form-group">
+                                <label class="col-md-4 control-label" > ¿Cuál? </label><br/>
+                                <div class="col-md-8">
+                                <input id="name" ng-model="clinicalriesgocliente.related_to_which" type="text" placeholder="" class="form-control input-md">
+                                </div>
+                                </div>
+                              </div>
+
+                          </div><!-- cierre columna primaria-->
+                        </div><br/><!-- cierre grupo-->  
+                 </div><!--cierre columnas-->
+              </div><!--bcierre row--><br/>
+
+            <div class="row">
+              <div class="col-md-6">
+
+                          <!--inicio formulario3-->
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label">¿Ha perdido el conocimiento sin causa aparente o haciendo ejercicio?    </label><br/>
+                            <div class="col-md-2">
+                              <label>
+                                <input  ng-model="clinicalriesgocliente.has_unconscious" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.has_unconscious" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label" >¿Ha tenido malestar en el pecho durante el ejercicio, mejorandose con el reposo?    </label><br/>
+                            <div class="col-md-2">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.chest_discomfort" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.chest_discomfort" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+
+
+                           <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label" >¿Ha tenido recientemente episodios de visión borrosa, acompañados de malestar?    </label><br/>
+                            <div class="col-md-2">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.blurred_vision_discomfor" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.blurred_vision_discomfor" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label" >¿Se le inflaman las piernas o parpados, sin razón alguna?    </label><br/>
+                            <div class="col-md-2">
+                              <label>
+                                <input  ng-model="clinicalriesgocliente.lids_inflamed_legs" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.lids_inflamed_legs" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+                           <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label" >¿Sufre de tos matutina, recurrente o crónica?    </label><br/>
+                            <div class="col-md-2">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.suffering_tos" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.suffering_tos" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+             
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label" >¿Sufre o sufrió de asma, relacionada con el ejercicio?    </label><br/>
+                            <div class="col-md-2">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.exercise_whit_asthma" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.exercise_whit_asthma" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label" >¿Ha tenido dificultad para respirar, estando sentado o dormido?    </label><br/>
+                            <div class="col-md-2">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.difficulty_breathing" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.difficulty_breathing" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-10 control-label" >¿Le han dicho que tiene lípidos alterados?    </label><br/>
+                            <div class="col-md-2">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.lipid_altered" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.lipid_altered" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+                           <!-- Text input-->
+                          <div >
+                            <label class="col-md-10 control-label" >¿Esta consumiendo algún suplemento vitamínico?</label><br/>
+                            <div class="col-md-2">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.vitamin_supplement" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.vitamin_supplement" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                              <label class="col-md-8 control-label" >¿Ha tenido problemas osteomusculares?    </label><br/>
+                            <div class="col-md-4">
+                              
+                              <div class="row">
+                                <label>
+                                <input ng-disabled="clinicalriesgocliente.musculoskeletal_problems_no" ng-click="ocultosteomuscular()" type="checkbox" ng-model="clinicalriesgocliente.musculoskeletal_problems_yes" ng-true-value="1" ng-false-value="0">
+                                Si
+                                </label><br/>
+                                <label>
+                                <input ng-disabled="clinicalriesgocliente.musculoskeletal_problems_yes"  ng-click="ocultosteomuscularno()" type="checkbox" ng-model="clinicalriesgocliente.musculoskeletal_problems_no" ng-true-value="1" ng-false-value="0">
+                                No
+                                </label><br/>
+                              </div> <!-- cierre row -->
+                            </div>
+                          </div><!-- cierre grupo-->
+
+                          <div  ng-show="showmusculos">
+                                <div class="form-group">
+                                  <label  class="col-md-4 control-label" > ¿Cuales? </label><br/>
+                                  <div class="col-md-8">
+                                  <textarea placeholder=""
+                                  rows="2"
+                                  class="form-control"
+                                  ng-model="clinicalriesgocliente.musculoskeletal_problems_which"
+                                  style="width:100%"> </textarea>
+                                  </div>
+                                </div>
+                          </div>
+
+                              <!-- Text input-->
+                              <div class="form-group">
+                                  <label class="col-md-8 control-label" >¿Consume medicinas para dormir?   </label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.sleep_medication_no" ng-click="dormir()" type="checkbox" ng-model="clinicalriesgocliente.sleep_medication_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.sleep_medication_yes" ng-click="dormir2()" type="checkbox" ng-model="clinicalriesgocliente.sleep_medication_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                              <div  ng-show="showdormir">
+                                    <div class="form-group">
+                                      <label  class="col-md-4 control-label" > ¿Cuáles? </label><br/>
+                                      <div class="col-md-8">
+                                      <textarea placeholder="Ingrese los medicamentos que el cliente consume para dormir."
+                                      rows="2"
+                                      class="form-control"
+                                      ng-model="clinicalriesgocliente.sleep_medication_which"
+                                      style="width:100%"> </textarea>
+                                      </div>
+                                    </div>
+                              </div>
+                   
+                              <!-- Text input-->
+                              <div class="form-group">
+                                  <label class="col-md-8 control-label" >¿Consume algún medicamento en especial?    </label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.consume_special_medicine_no" ng-click="medicamento()" type="checkbox" ng-model="clinicalriesgocliente.consume_special_medicine_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.consume_special_medicine_yes" ng-click="medicamento2()" type="checkbox" ng-model="clinicalriesgocliente.consume_special_medicine_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                              <div  ng-show="showmedicina">
+                                    <div class="form-group">
+                                      <label  class="col-md-4 control-label" > ¿Cuáles? </label><br/>
+                                      <div class="col-md-8">
+                                      <textarea placeholder="Ingrese el nombre del medicamento que el cliente consume."
+                                      rows="2"
+                                      class="form-control"
+                                      ng-model="clinicalriesgocliente.consume_special_medicine_which"
+                                      style="width:100%"> </textarea>
+                                      </div>
+                                    </div>
+                              </div>
+
+                          
+                                
+                          <!-- Text input-->
+                          <div class="form-group">
+                              <label class="col-md-8 control-label" >¿Tiene cirugías?    </label><br/>
+                            <div class="col-md-4">
+                              
+                              <div class="row">
+                                <label>
+                                <input ng-disabled="clinicalriesgocliente.sugeries_no" ng-click="cirugia()" type="checkbox" ng-model="clinicalriesgocliente.sugeries_yes" ng-true-value="1" ng-false-value="0">
+                                Si
+                                </label><br/>
+                                <label>
+                                <input ng-disabled="clinicalriesgocliente.sugeries_yes" ng-click="cirugia2()" type="checkbox" ng-model="clinicalriesgocliente.sugeries_no" ng-true-value="1" ng-false-value="0">
+                                No
+                                </label><br/>
+                              </div> <!-- cierre row -->
+                            </div>
+                          </div><!-- cierre grupo-->
+
+                                    <div  ng-show="showcirugia">
+                                          <div class="form-group">
+                                            <label  class="col-md-4 control-label" > ¿Cuales? </label><br/>
+                                            <div class="col-md-8">
+                                            <textarea placeholder=""
+                                            rows="2"
+                                            class="form-control"
+                                            ng-model="clinicalriesgocliente.sugeries_which"
+                                            style="width:100%"> </textarea>
+                                            </div>
+                                          </div>
+                                    </div>
+
+                          
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >¿Sufre de estrés?    </label><br/>
+                              <div class="col-md-8">
+                                
+                                <div class="row">
+                                  <div class="col-md-4">  
+                                     <label >
+                                    <input  ng-model="clinicalriesgocliente.suffering_stress" value="P" type="radio">
+                                    Permanentemente
+                                    </label><br/>
+                                    <label >
+                                      <input  ng-model="clinicalriesgocliente.suffering_stress" value="N" type="radio">
+                                      Frecuentemente
+                                    </label><br/>
+                                  </div>    
+                                  <div class="col-md-4"> 
+                                    <label >
+                                    <input  ng-model="clinicalriesgocliente.suffering_stress" value="O" type="radio">
+                                    Ocasionalmente
+                                    </label><br/>
+                                    <label >
+                                      <input  ng-model="clinicalriesgocliente.suffering_stress" value="R" type="radio">
+                                      Raravez
+                                    </label><br/>
+                                  </div>
+                                  
+                                  <div class="col-md-4">
+                                    <label >
+                                      <input ng-model="clinicalriesgocliente.suffering_stress" value="N" type="radio">
+                                      No
+                                    </label><br/>
+
+                                 </div> <!-- cierre columna 3-->
+                                </div> <!-- cierre row -->
+                              </div>
+                            </div><!-- cierre grupo-->
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >¿Ha tenido problemas en su espalda?    </label><br/>
+                              <div class="col-md-8">
+                                
+                                <div class="row">
+                                  <div class="col-md-4">  
+                                  <label >
+                                  <input   ng-click="problemas2()" ng-disabled="clinicalriesgocliente.back_problems_yes" type="checkbox" ng-model="clinicalriesgocliente.back_problems_no" ng-true-value="1" ng-false-value="0"> 
+                                  No
+                                  </label><br/>
+                                  <label >
+                                  <input  ng-click="problemas()" ng-disabled="clinicalriesgocliente.back_problems_no"  type="checkbox" ng-model="clinicalriesgocliente.back_problems_yes" ng-true-value="1" ng-false-value="0"> 
+                                  Si
+                                  </label><br/>
+                                  </div>
+                                <div ng-show="showproblema">
+                                  <div class="col-md-4" > 
+                                  
+                                    <label >
+                                        <input ng-model="clinicalriesgocliente.back_problems" value="D" type="radio">
+                                        Dorsal
+                                    </label><br/>
+                                    <label >
+                                        <input ng-model="clinicalriesgocliente.back_problems" value="C" type="radio">
+                                    Cervical
+                                    </label><br/>
+                                    
+                                  </div>
+                                  
+                                  <div class="col-md-4" >
+                                   <label >
+                                        <input ng-model="clinicalriesgocliente.back_problems" value="L" type="radio">
+                                        Lumbar
+                                    </label><br/>
+                                  </div> <!-- cierre columna 3-->
+                                 </div>
+                                </div> <!-- cierre row -->
+                              </div>
+                            </div><!-- cierre grupo-->
+
+                            <div ng-show="showproblema">
+                             <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >La manifestación del problema es:   </label><br/>
+                              <div class="col-md-8">
+                                
+                                <div class="row">
+                                  <div class="col-md-4">  
+                                  
+                                  <label >
+                                        <input ng-model="clinicalriesgocliente.back_problems_demonstration" value="L" type="radio">
+                                        Leves
+                                    </label><br/>
+                                  
+                                  </div>
+
+                                  <div class="col-md-4"> 
+                                  
+                                   <label >
+                                        <input ng-model="clinicalriesgocliente.back_problems_demonstration" value="S" type="radio">
+                                    Severo
+                                    </label><br/>
+                                  </div>
+                                  
+                                  <div class="col-md-4">
+
+                                  <label >
+                                        <input ng-model="clinicalriesgocliente.back_problems_demonstration" value="M" type="radio">
+                                    Moderado
+                                    </label><br/>
+
+                                  </div> <!-- cierre columna 3-->
+                                </div> <!-- cierre row -->
+                              </div>
+                            </div><!-- cierre grupo-->
+                          </div>  
+                          
+                          </div>
+                      </div><br/>
+
+                        </div>
+
+          <div class="text-center">
+            <br/>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('AntecedentesPersonales')">Atrás</a>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('habitos')">Continuar</a>
+          </div>                
+
+        </script>
+          
+        <script type="text/ng-template" id="habitos">
+          <div  class="specialPaddingFormClinical"  id="habitos"><br/>
+            
+            <div class="row">
+           
+                <div class="col-md-6">
+
+                <div class="form-group ">
+                   <label class="col-md-4 control-label">En su alimentación el consumo de azúcares es :    </label>
+                   <div class="col-md-8">
+                     <select ng-model="clinicalriesgocliente.food_consumption_sugar" required class="form-control">
+                     <option value="">Seleccione...</option>
+                     <option value="A">Alto</option>
+                     <option value="B">Bajo</option>
+                     <option value="N">Normal</option>
+                     </select>
+                   </div>
+                </div>
+
+                <div class="form-group ">
+                 <label  class="col-md-4 control-label" >En su alimentación el consumo de grasa es :    </label>
+                 <div class="col-md-8">
+                   <select ng-model="clinicalriesgocliente.food_fat_take"required class="form-control">
+                   <option value="">Seleccione...</option>
+                   <option value="A">Alto</option>
+                   <option value="B">Bajo</option>
+                   <option value="N">Normal</option>
+                   </select>
+                 </div>
+                </div>
+                      
+                   <div class="form-group">
+                      <label class="col-md-4 control-label" >¿Fuma?    </label><br/>
+                    <div class="col-md-8">
+                      
+                        
+                        <label >
+                        <input ng-disabled="clinicalriesgocliente.smoking_no"  ng-click="fuma()" type="checkbox" ng-model="clinicalriesgocliente.smoking_yes" ng-true-value="1" ng-false-value="0"> 
+                        Si
+                        </label><br/>
+                        <label >
+                        <input ng-disabled="clinicalriesgocliente.smoking_yes"  ng-click="fuma2()" type="checkbox" ng-model="clinicalriesgocliente.smoking_no" ng-true-value="1" ng-false-value="0"> 
+                        No
+                        </label><br/>
+                    </div>
+                   </div><!-- cierre grupo-->
+
+                <div ng-show="showfumar">
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > ¿Desde hace cuánto? </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.smoking_since_when" type="text" placeholder="" class="form-control input-md">
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > ¿Cuántos al día? </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.smoking_how_day" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > ¿Desde hace cuánto lo dejo? </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.smoking_how_much_leave" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+                </div>    
+                       
+
+                  <div class="form-group">
+                      <label class="col-md-4 control-label" >¿Consume anticonceptivos orales?    </label><br/>
+                    <div class="col-md-8">
+                      
+                        
+                        <label >
+                        <input ng-disabled="clinicalriesgocliente.consume_contraceptives_oral_no"  ng-click="anticonceptivos()" type="checkbox" ng-model="clinicalriesgocliente.consume_contraceptives_oral_yes" ng-true-value="1" ng-false-value="0"> 
+                        Si
+                        </label><br/>
+                        <label >
+                        <input ng-disabled="clinicalriesgocliente.consume_contraceptives_oral_yes"  ng-click="anticonceptivos2()" type="checkbox" ng-model="clinicalriesgocliente.consume_contraceptives_oral_no" ng-true-value="1" ng-false-value="0"> 
+                        No
+                        </label>
+                    </div>
+                  </div><!-- cierre grupo-->
+
+                <div ng-show="showoral">
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > ¿Cuáles? </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.consume_contraceptives_oral_which" type="text" placeholder="" class="form-control input-md">
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > G </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.consume_contraceptives_oral_g" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > P </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.consume_contraceptives_oral_p" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > CES </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.consume_contraceptives_oral_ces" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > VIVO </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.consume_contraceptives_oral_aliv" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+                </div>    
+                             
+
+                </div>
+
+                <div class="col-md-6">
+
+              <!-- Text input-->
+              <div class="form-group">
+                  <label class="col-md-4 control-label" >¿Consume alcohol?    </label><br/>
+                <div class="col-md-8">
+                  
+                  <div class="row">
+                    <div class="col-md-4">  
+                    <label >
+                    <input ng-disabled="clinicalriesgocliente.alcohol_no" ng-click="alcohol()" type="checkbox" ng-model="clinicalriesgocliente.alcohol_yes" ng-true-value="1" ng-false-value="0"> 
+                    si
+                    </label><br/>
+                    <label >
+                    <input ng-disabled="clinicalriesgocliente.alcohol_yes" ng-click="alcohol2()" type="checkbox" ng-model="clinicalriesgocliente.alcohol_no" ng-true-value="1" ng-false-value="0"> 
+                    No
+                    </label><br/>
+                    </div>
+
+                <div ng-show="showalcohol">
+                    <div class="col-md-4"> 
+                    <label>
+                    <input type="checkbox" ng-model="clinicalriesgocliente.alcohol_beer" ng-true-value="1" ng-false-value="0"> 
+                    Cerveza
+                    </label><br/>
+                    <label>
+                    <input type="checkbox" ng-model="clinicalriesgocliente.alcohol_wine" ng-true-value="1" ng-false-value="0"> 
+                    Vino
+                    </label><br/>
+                    </div>
+                    
+                    <div class="col-md-4">
+                    <label>
+                    <input type="checkbox" ng-model="clinicalriesgocliente.alcohol_liqueur" ng-true-value="1" ng-false-value="0">
+                    Licor
+                    </label><br/>
+                    </div> <!-- cierre columna 3-->
+
+                  </div> <!-- cierre row -->
+                </div>
+              </div><!-- cierre grupo-->
+              </div>
+                  
+                  <div ng-show="showalcohol">
+                    <!-- Text input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" > ¿Cuántas veces por semana? </label><br/>
+                    <div class="col-md-8">
+                    <input  ng-model="clinicalriesgocliente.alcohol_how_many_times_week" type="text" placeholder="" class="form-control input-md" >
+                    </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" > ¿Cuántas veces al mes? </label><br/>
+                    <div class="col-md-8">
+                    <input  ng-model="clinicalriesgocliente.alcohol_few_times_month" type="text" placeholder="" class="form-control input-md" >
+                    </div>
+                    </div>
+                  </div>
+              
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">¿Cuántas horas duerme?</label><br/>
+                          <div class="col-md-8">
+                            <label>
+                              <input  ng-model="clinicalriesgocliente.slepps" value="3" type="radio">
+                              Menos de cuatro
+                            </label><br/>
+                            <label >
+                              <input  ng-model="clinicalriesgocliente.slepps" value="4" type="radio">
+                              Entre cuatro y seis
+                            </label><br/>
+                            <label >
+                              <input  ng-model="clinicalriesgocliente.slepps" value="6" type="radio">
+                              Más de seis
+                            </label><br/>
+                          </div>
+                        </div>
+
+                         <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">El tiempo de descanso es </label><br/>
+                          <div class="col-md-8">
+                            <label>
+                              <input  ng-model="clinicalriesgocliente.slepps_repair" value="S" type="radio">
+                              Es reparador
+                            </label><br/>
+                            <label>
+                              <input  ng-model="clinicalriesgocliente.slepps_repair" value="N" type="radio">
+                              No es reparador
+                            </label><br/>
+                          </div>
+                        </div></br>
+
+                    
+                    <!-- Text input-->
+                   </B> <P class="text-center" >          FACTORES DE RIESGO </p>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > Cardiovascular </label><br/>
+                      <div class="col-md-8">
+                      <input ng-model="clinicalriesgocliente.risk_factors_cardiovascular" type="text" placeholder="" class="form-control input-md">
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > Hombro </label><br/>
+                      <div class="col-md-8">
+                      <input ng-model="clinicalriesgocliente.risk_factors_shoulder" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > Rodilla </label><br/>
+                      <div class="col-md-8">
+                      <input id="name" ng-model="clinicalriesgocliente.risk_factors_knee" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" > Columna Lumbar </label><br/>
+                      <div class="col-md-8">
+                      <input ng-model="clinicalriesgocliente.risk_factors_lumbar_spine" type="text" placeholder="" class="form-control input-md" >
+                      </div>
+                    </div>
+
+
+                </div>
+            </div><br/>
+
+         </div>
+
+          <div class="text-center">
+            <br/>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('lehandicho')">Atrás</a>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('antecedentesfamiliares')">Continuar</a>
+          </div>        
+
+        </script>
+
+        <script type="text/ng-template" id="antecedentesfamiliares">
+          <div class="specialPaddingFormClinical"  id="antecedentesfamiliares"><br/>
+                  
+            <div class="row">
+                  <div class="col-md-12">
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >¿En su familia sus padres han presentado?    </label><br/>
+                      <div class="col-md-8">
+                        
+                        <div class="row">
+                          <div class="col-md-4">  
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_parents_heart_infarction" ng-true-value="1" ng-false-value="0"> 
+                          Infarto del corazón
+                          </label><br/>
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_parents_hta" ng-true-value="1" ng-false-value="0"> 
+                          HTA
+                          </label><br/>
+                          </div>
+
+                          <div class="col-md-4"> 
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_parents_mellitus_diabetes" ng-true-value="1" ng-false-value="0"> 
+                          Diabetes Mellitus
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_parents_sudden_death" ng-true-value="1" ng-false-value="0"> 
+                          Muerte Súbita
+                          </label><br/>
+                          </div>
+                          
+                          <div class="col-md-4">
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_parents_cerebrovascular_disease" ng-true-value="1" ng-false-value="0">
+                          Enf. Vascular Cerebral
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_parents_cholesterol" ng-true-value="1" ng-false-value="0">
+                          Transtornos de colesterol
+                          </label><br/>
+                          </div> <!-- cierre columna 3-->
+
+                        </div> <!-- cierre row -->
+                      </div>
+                    </div><!-- cierre grupo-->
+
+                     <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >¿En su familia sus hermanos han presentado?    </label><br/>
+                      <div class="col-md-8">
+                        
+                        <div class="row">
+                          <div class="col-md-4">  
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_brothers_heart_infarction" ng-true-value="1" ng-false-value="0"> 
+                          Infarto del corazón
+                          </label><br/>
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_brothers_hta" ng-true-value="1" ng-false-value="0"> 
+                          HTA
+                          </label><br/>
+                          </div>
+
+                          <div class="col-md-4"> 
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_brothers_mellitus_diabetes" ng-true-value="1" ng-false-value="0"> 
+                          Diabetes Mellitus
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_brothers_sudden_death" ng-true-value="1" ng-false-value="0"> 
+                          Muerte Súbita
+                          </label><br/>
+                          </div>
+                          
+                          <div class="col-md-4">
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_brothers_cerebrovascular_disease" ng-true-value="1" ng-false-value="0">
+                          Enf. Vascular Cerebral
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_brothers_cholesterol" ng-true-value="1" ng-false-value="0">
+                          Transtornos de colesterol
+                          </label><br/>
+                          </div> <!-- cierre columna 3-->
+
+                        </div> <!-- cierre row -->
+                      </div>
+                    </div><!-- cierre grupo-->
+                            
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >¿En su familia sus tíos han presentado?    </label><br/>
+                      <div class="col-md-8">
+                        
+                        <div class="row">
+                          <div class="col-md-4">  
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_uncles_heart_infarction" ng-true-value="1" ng-false-value="0"> 
+                          Infarto del corazón
+                          </label><br/>
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_uncles_hta" ng-true-value="1" ng-false-value="0"> 
+                          HTA
+                          </label><br/>
+                          </div>
+
+                          <div class="col-md-4"> 
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_uncles_mellitus_diabetes" ng-true-value="1" ng-false-value="0"> 
+                          Diabetes Mellitus
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_uncles_sudden_death" ng-true-value="1" ng-false-value="0"> 
+                          Muerte Súbita
+                          </label><br/>
+                          </div>
+                          
+                          <div class="col-md-4">
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_uncles_cerebrovascular_disease" ng-true-value="1" ng-false-value="0">
+                          Enf. Vascular Cerebral
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_uncles_cholesterol" ng-true-value="1" ng-false-value="0">
+                          Transtornos de colesterol
+                          </label><br/>
+                          </div> <!-- cierre columna 3-->
+
+                        </div> <!-- cierre row -->
+                      </div>
+                    </div><!-- cierre grupo-->
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >¿En su familia sus abuelos han presentado?    </label><br/>
+                      <div class="col-md-8">
+                        
+                        <div class="row">
+                          <div class="col-md-4">  
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_grandparents_heart_infarction" ng-true-value="1" ng-false-value="0"> 
+                          Infarto del corazón
+                          </label><br/>
+                          <label >
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_grandparents_hta" ng-true-value="1" ng-false-value="0"> 
+                          HTA
+                          </label><br/>
+                          </div>
+
+                          <div class="col-md-4"> 
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_grandparents_mellitus_diabetes" ng-true-value="1" ng-false-value="0"> 
+                          Diabetes Mellitus
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_grandparents_sudden_death" ng-true-value="1" ng-false-value="0"> 
+                          Muerte Súbita
+                          </label><br/>
+                          </div>
+                          
+                          <div class="col-md-4">
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_grandparents_cerebrovascular_disease" ng-true-value="1" ng-false-value="0">
+                          Enf. Vascular Cerebral
+                          </label><br/>
+                          <label>
+                          <input type="checkbox" ng-model="clinicalriesgocliente.your_family_grandparents_cholesterol" ng-true-value="1" ng-false-value="0">
+                          Transtornos de colesterol
+                          </label><br/>
+                          </div> <!-- cierre columna 3-->
+
+                        </div> <!-- cierre row -->
+                      </div>
+                    </div><!-- cierre grupo-->
+
+                  </div>
+
+            </div><br/>
+
+          </div>
+
+          <div class="text-center">
+            <br/>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('habitos')">Atrás</a>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('otrasvaloraciones')">Continuar</a>
+          </div>    
+
+        </script>
+
+        <script type="text/ng-template" id="otrasvaloraciones">
+          <div  class="specialPaddingFormClinical"  id="otrasvaloraciones"><br/>
+            
+            <div class="row">
+                  <div class="col-md-6">
+                    
+
+                              <!-- Text input-->
+                              <div class="form-group">
+                                  <label class="col-md-8 control-label" >¿Tiene trastornos menstruales que le preocupen?     </label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.menstrual_disorders_no" ng-click="menstrual()" type="checkbox" ng-model="clinicalriesgocliente.menstrual_disorders_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.menstrual_disorders_yes" ng-click="menstrual2()" type="checkbox" ng-model="clinicalriesgocliente.menstrual_disorders_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                                        <div  ng-show="showmenstrual">
+                                              <div class="form-group">
+                                                <label  class="col-md-4 control-label" > ¿Cuales? </label><br/>
+                                                <div class="col-md-8">
+                                                <textarea placeholder=""
+                                                rows="2"
+                                                class="form-control"
+                                                ng-model="clinicalriesgocliente.menstrual_disorders_which"
+                                                style="width:100%"> </textarea>
+                                                </div>
+                                              </div>
+                                        </div>
+
+
+                                    <div class="form-group">
+                                      <label  class="col-md-4 control-label" > Valoración de postura </label><br/>
+                                      <div class="col-md-8">
+                                      <textarea placeholder=""
+                                      rows="3"
+                                      class="form-control"
+                                      ng-model="clinicalriesgocliente.assessment_position"
+                                      style="width:100%"> </textarea> 
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label  class="col-md-4 control-label" > Hallazgos </label><br/>
+                                      <div class="col-md-8">
+                                      <textarea placeholder=""
+                                      rows="3"
+                                      class="form-control"
+                                      ng-model="clinicalriesgocliente.findings"
+                                      style="width:100%"> </textarea> 
+                                      </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                      <label  class="col-md-4 control-label" > Valoración muscular </label><br/>
+                                      <div class="col-md-8">
+                                      <textarea placeholder=""
+                                       rows="3"
+                                      class="form-control"
+                                      ng-model="clinicalriesgocliente.muscle_assessment"
+                                      style="width:100%"> </textarea> 
+                                      </div>
+                                    </div>
+                                   
+                                  </div>
+
+                                <div class="col-md-6">
+                                
+                                    <!-- Text input-->
+                                    <h4 class="text-center" > PRUEBAS   </h4>
+                               
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Apoyo Unipodal    </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_unipodal_supporters_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_unipodal_supporters_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                   
+                                    </div> <!-- cierre row -->
+                                   
+
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Lounge    </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_lounge_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_lounge_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                   
+                                    </div> <!-- cierre row -->
+                                            
+                                   <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Squat    </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" > </label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_squat" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+                                     
+                                    </div> <!-- cierre row -->         
+
+
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Pasaje de Valla    </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_passage_fence_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_passage_fence_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                    
+                                    </div> <!-- cierre row -->
+
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Core en Cuadropedia    </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_core_fours_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_core_fours_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                
+                                    </div> <!-- cierre row -->
+
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Control Lumbo-Pélvico    </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_pelvic_lumbo_control_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_pelvic_lumbo_control_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                     
+                                    </div> <!-- cierre row -->
+
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Retracción Muscular de Isquiotibiales</label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_retraction_hamstrings_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_retraction_hamstrings_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                   
+                                    </div> <!-- cierre row -->
+                                
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Retracción Muscular del Cuádriceps </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_muscular_quadriceps_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_muscular_quadriceps_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                     
+                                    </div> <!-- cierre row -->
+
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Retracción Muscular de Rotadores Internos  </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_rotator_internal_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_rotator_internal_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                    
+                                    </div> <!-- cierre row -->
+
+                                    <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Retracción Muscular de los Rotadores Externos</label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" >I</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_external_rotators_i" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+
+                                          <div class="col-md-4"> 
+                                           <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label">D</label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_external_rotators_d" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div> 
+                                          </div>                                   
+                                    </div> <!-- cierre row -->
+                                            
+                                   <div class="row">
+                                    
+                                      
+                                          <label class="col-md-4 control-label" >Activación Abdominal  </label>
+                                                                                
+                                          <div class="col-md-4">  
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                              <label class="col-md-4 control-label" > </label>
+                                              <div class="col-md-8">
+                                                <input  ng-model="clinicalriesgocliente.tests_abdominal_activation" type="number" step="0.01" placeholder="números" class="form-control input-md" >
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+                                     
+                                    </div> <!-- cierre row --> 
+
+
+                                </div>
+                  
+
+                 </div>
+            </div><br/>
+          </div>
+
+          <div class="text-center">
+            <br/>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('antecedentesfamiliares')">Atrás</a>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('medidas')">Continuar</a>
+          </div>    
+
+        </script>
+
+        <script type="text/ng-template" id="medidas">
+          <div  class="specialPaddingFormClinical" id="medidas"><br/>
+            
+            <div class="row">
+                 
+                 <div class="col-md-4">
+                        
+                        <h4 class="text-center"> PLIEGUES</h4><br/>
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Pant </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_pant"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md">
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Muslo </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_muslo"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Gluteo </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_gluteo"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > ABD </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_abd" type="number" step="0.01" placeholder="Sólo números" class="form-control input-md">
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Cint </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_cint"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Pecho </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_pecho" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md" >
+                        </div>
+                        </div>
+
+                         <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Hbro </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_hbro" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md">
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Brazo </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_arm" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md" >
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Biceps </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.folds_biceps" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md" >
+                        </div>
+                        </div>
+
+                 </div>
+
+                 <div class="col-md-4">
+                    
+                        <h4 class="text-center"> ANTROPOMETRÍA BÁSICA</h4><br/>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > TR </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="actsuma()"  ng-model="clinicalriesgocliente.tests_anthropometry_basic_tr"  type="number" step="0.01"placeholder="Sólo números" class="form-control input-md">
+                        </div>
+                        </div></br>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > SE </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="actsuma()"   ng-model="clinicalriesgocliente.tests_anthropometry_basic_se"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div></br>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > SI </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="actsuma()"  ng-model="clinicalriesgocliente.tests_anthropometry_basic_si"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div></br>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > ABD </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="actsuma()"  ng-model="clinicalriesgocliente.tests_anthropometry_basic_abd" type="number" step="0.01" placeholder="Sólo números" class="form-control input-md">
+                        </div>
+                        </div></br>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > M </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="actsuma()" ng-model="clinicalriesgocliente.tests_anthropometry_basic_m"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div></br>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > P </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="actsuma()"  ng-model="clinicalriesgocliente.tests_anthropometry_basic_p" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md"  >
+                        </div>
+                        </div></br>
+
+                         <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > TOTAL : </label><br/>
+                        <div class="col-md-6">
+                        <input disabled=" showdesabilitar" ng-change="x2()"  ng-model="clinicalriesgocliente.tests_anthropometry_basic_total" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md">
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > TOTAL MUJERES: </label><br/>
+                        <div class="col-md-6">
+                        <input readonly  ng-model="clinicalriesgocliente.total_f" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md">
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > TOTAL HOMBRES: </label><br/>
+                        <div class="col-md-6">
+                        <input readonly  ng-model="clinicalriesgocliente.total_m" type="number" step="0.01" placeholder="Sólo números"  class="form-control input-md">
+                        </div>
+                        </div>  
+  
+  
+                 </div>
+
+                 <div class="col-md-4">
+                    
+                        <h4 class="text-center"> EXÁMEN FÍSICO</h4><br/>
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label  class="col-md-4 control-label" > Peso </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="imc()"   ng-model="clinicalriesgocliente.physical_exam_weight"  type="number" step="0.01"placeholder="Sólo números" class="form-control input-md">
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Talla </label><br/>
+                        <div class="col-md-6">
+                        <input ng-change="x2()"  ng-model="clinicalriesgocliente.physical_exam_size"  type="number" step="0.01"placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > X2 </label><br/>
+                        <div class="col-md-6">
+                        <input readonly  ng-model="clinicalriesgocliente.physical_exam_x2"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label  class="col-md-4 control-label" > IMC </label><br/>
+                        <div class="col-md-6">
+                        <input  readonly ng-model="clinicalriesgocliente.physical_exam_imc" type="number" step="0.01" placeholder="Sólo números" class="form-control input-md">
+                        </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > %Grasa </label><br/>
+                        <div class="col-md-6">
+                        <input  ng-model="clinicalriesgocliente.physical_exam_fat"  type="number" step="0.01" placeholder="Sólo números" class="form-control input-md" >
+                        </div>
+                        </div><br/></br>
+
+
+                        <h4 class="text-center"> EXÁMEN CARDIOVASCULAR</h4><br/>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Presión Arterial </label><br/>
+                        <div class="col-md-6">
+                        <input ng-model="clinicalriesgocliente.cardiovascular_review_blood_pressure" step="0.01" type="number" placeholder="Sólo números"  class="form-control input-md" >
+                        </div>
+                        </div>
+
+                         <!-- Text input-->
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" > Pulso </label><br/>
+                        <div class="col-md-6">
+                        <input id="name" ng-model="clinicalriesgocliente.cardiovascular_review_pulse" type="number" step="0.01"placeholder="Sólo números"  class="form-control input-md">
+                        </div>
+                        </div>
+
+                        
+                 </div>
+
+
+            </div><br/>
+          </div>
+
+          <div class="text-center">
+            <br/>
+             <a class="btn btn-default" ng-click="onClickTabWithURL('otrasvaloraciones')">Atrás</a>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('actividadfisica')">Continuar</a>
+          </div> 
+
+        </script>
+
+        <script type="text/ng-template" id="actividadfisica">
+          <div  class="specialPaddingFormClinical"  id="actividadfisica"><br/>
+            
+            <div class="row">
+            <div class="col-md-6">
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" > ¿Desde hace cuánto hace ejercicio? </label><br/>
+                    <div class="col-md-8">
+                    <input ng-model="clinicalriesgocliente.exercise_since" type="text" placeholder="" class="form-control input-md" >
+                    </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" > ¿Cuántos días a la semana hace ejercicio? </label><br/>
+                    <div class="col-md-8">
+                    <input ng-model="clinicalriesgocliente.days_week_exercise_long" type="number" step="0.01" placeholder="" class="form-control input-md">
+                    </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" > ¿Cuántas horas? </label><br/>
+                    <div class="col-md-8">
+                    <input  ng-model="clinicalriesgocliente.days_week_exercise_hours" type="number" step="0.01" placeholder="" class="form-control input-md" >
+                    </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" > ¿Cuándo hizo ejercicio por última vez? </label><br/>
+                    <div class="col-md-8">
+                    <input  ng-model="clinicalriesgocliente.exercise_last_see" type="text" placeholder="" class="form-control input-md" >
+                    </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" >¿Cuáles son sus objetivos?</label>
+                      <div class="col-md-8">
+                        <textarea  style="width:100%" class="form-control" ng-model="clinicalriesgocliente.your_goals" rows="2" > </textarea>
+                      </div>
+                    </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" >Recomendaciones</label>
+                      <div class="col-md-8">
+                        <textarea  style="width:100%" class="form-control" ng-model="clinicalriesgocliente.recomendations"  rows="3"> </textarea>
+                      </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" >Conclusión final</label>
+                      <div class="col-md-8">
+                        <textarea  style="width:100%" class="form-control" ng-model="clinicalriesgocliente.final_conclusion" rows="3" > </textarea>
+                      </div>
+                    </div>
+
+
+                     <!-- Textarea -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" >Seguimiento</label>
+                      <div class="col-md-8">
+                        <textarea  style="width:100%" class="form-control" ng-model="clinicalriesgocliente.fllow_up" rows="3"  > </textarea>
+                      </div>
+                    </div>
+
+              
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" >Evaluador clínico</label>
+                      <div class="col-md-8">
+                        <input ng-model="clinicalriesgocliente.clinical_evaluator" type="text" placeholder="" class="form-control input-md" required="">
+
+                      </div>
+                    </div>    
+
+            </div>
+            </div><br/>
+
+          </div>       
+
+          <div class="text-center">
+            <br/>
+            <a class="btn btn-default" ng-click="onClickTabWithURL('medidas')">Atrás</a> 
+            <a class="btn btn-default" ng-click="onClickTabWithURL('formularioriesgos')">Continuar</a>
+          </div> 
+
+        </script>
+
+
+        <script type="text/ng-template" id="formularioriesgos">
+          <div class="specialPaddingFormClinical"  id="formularioriesgos"><br/>
+            
+            <div class="row">
+           
+                
+                          <B><h4 class="text-center" >ANTECEDENTES FAMILIARES    </h4><br/></B>
+                          <p class="text-center" >ALGUNOS DE SUS FAMILIARES (ABUELOS, PADRES, HERMANOS O TÍOS) PADECEN O HAN PADECIDO ALGUNA O VARIAS DE LAS SIGUIENTES ENFERMEDADES. </p><br/>
+                  
+                  <div class="col-md-6">
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-6 control-label" >MUERTE SÚBITA (ANTES DE LOS 50 AÑOS)    </label><br/>
+                            <div class="col-md-6">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.family_history_sudden_death" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.family_history_sudden_death" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+                  </div>
+                <div class="col-md-6">  
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-6 control-label" >ENFERMEDAD CORONARIA (ANTES DE LOS 50 AÑOS)    </label><br/>
+                            <div class="col-md-6">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.family_history_coronary_disease" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.family_history_coronary_disease" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+   
+                </div>
+            </div><br/>
+
+                          <B><h4 class="text-center" >ANTECEDENTES PERSONALES    </h4><br/></B>
+                          <p class="text-center" >TIENE USTED ANTECEDENTES DE ALGUNA DE LOS SIGUIENTES RIESGOS: </p><br/>
+                  
+              <div class="row">
+           
+                <div class="col-md-6">
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >CIRUGÍA ESTÉTICA RECIENTE (2 MESES)</label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.recent_surgery_aesthetic" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.recent_surgery_aesthetic" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+                          
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >CIRUGÍA CARDIACA </label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.heart_surgery" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.heart_surgery" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >CIRUGÍA ORTOPÉDICA  RECIENTE (2 MESES)</label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.orthopedic_surgery" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.orthopedic_surgery" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+                          
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >LESIÓN ORTOPÉDICA RECIENTE (2 MESES) </label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.injury_ortopedica" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.injury_ortopedica" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+                                 <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >DIABETES    </label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.diabetes" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.diabetes" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+                          
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >OBESIDAD    </label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.obesity" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.obesity" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >ARTRÍTIS REUMATOIDEA    </label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.rheumatoid_arthritis" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.rheumatoid_arthritis" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+   
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-md-8 control-label" >¿ES MENOR DE 14 Ó MAYOR DE 55 AÑOS?    </label><br/>
+                            <div class="col-md-4">
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.less_than_14" value="S" type="radio">
+                                Si
+                              </label><br/>
+                              <label >
+                                <input  ng-model="clinicalriesgocliente.less_than_14" value="N" type="radio">
+                                No
+                              </label><br/>
+                            </div>
+                          </div>
+   
+                </div>
+
+                <div class="col-md-6">
+
+                      
+
+                            <!-- Text input-->
+                             <div class="form-group">
+                                  <label class="col-md-8 control-label" >EMBARAZO ACTUAL</label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.current_pregnancy_no" ng-click="embarazo()" type="checkbox" ng-model="clinicalriesgocliente.current_pregnancy_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.current_pregnancy_yes" ng-click="embarazo2()" type="checkbox" ng-model="clinicalriesgocliente.current_pregnancy_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                                        <div  ng-show="showembarazoa">
+                                              <div class="form-group">
+                                                <label  class="col-md-4 control-label" > MES DE GESTACIÓN </label><br/>
+                                                <div class="col-md-8">
+                                                <textarea placeholder=""
+                                                rows="1"
+                                                class="form-control"
+                                                ng-model="clinicalriesgocliente.current_pregnancy_monts"
+                                                style="width:100%"> </textarea>
+                                                </div>
+                                              </div>
+                                        </div>
+                          
+                             <!-- Text input-->
+                            <div class="form-group">
+                                  <label class="col-md-8 control-label" >DISCAPACIDAD FÍSICA</label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.physical_disability_no" ng-click="discapacidad()" type="checkbox" ng-model="clinicalriesgocliente.physical_disability_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.physical_disability_yes" ng-click="discapacidad2()" type="checkbox" ng-model="clinicalriesgocliente.physical_disability_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                                        <div  ng-show="showdiscapacidadf">
+                                              <div class="form-group">
+                                                <label  class="col-md-4 control-label" > ¿CUÁL? </label><br/>
+                                                <div class="col-md-8">
+                                                <textarea placeholder=""
+                                                rows="1"
+                                                class="form-control"
+                                                ng-model="clinicalriesgocliente.physical_disability_no_which"
+                                                style="width:100%"> </textarea>
+                                                </div>
+                                              </div>
+                                        </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                  <label class="col-md-8 control-label" > CIRUGÍA RECIENTE MENOR DE 2 MESES</label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.recent_surgery_2months_no" ng-click="cirureciente()" type="checkbox" ng-model="clinicalriesgocliente.recent_surgery_2months_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.recent_surgery_2months_yes" ng-click="cirureciente2()" type="checkbox" ng-model="clinicalriesgocliente.recent_surgery_2months_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                                        <div  ng-show="showcirugiareciente">
+                                              <div class="form-group">
+                                                <label  class="col-md-4 control-label" > ¿CUÁL? </label><br/>
+                                                <div class="col-md-8">
+                                                <textarea placeholder=""
+                                                rows="1"
+                                                class="form-control"
+                                                ng-model="clinicalriesgocliente.recent_surgery_2months_which"
+                                                style="width:100%"> </textarea>
+                                                </div>
+                                              </div>
+                                        </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                  <label class="col-md-8 control-label" > PATOLOGÍA CARDIACA</label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.cardiac_pathology_no" ng-click="patologia()" type="checkbox" ng-model="clinicalriesgocliente.cardiac_pathology_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.cardiac_pathology_yes" ng-click="patologia2()" type="checkbox" ng-model="clinicalriesgocliente.cardiac_pathology_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                                        <div  ng-show="showpatologiac">
+                                              <div class="form-group">
+                                                <label  class="col-md-4 control-label" > ¿CUÁL? </label><br/>
+                                                <div class="col-md-8">
+                                                <textarea placeholder=""
+                                                rows="1"
+                                                class="form-control"
+                                                ng-model="clinicalriesgocliente.cardiac_pathology_which"
+                                                style="width:100%"> </textarea>
+                                                </div>
+                                              </div>
+                                        </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                  <label class="col-md-8 control-label" > HIPERTENSIÓN</label><br/>
+                                <div class="col-md-4">
+                                  
+                                  <div class="row">
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.hypertension_no" ng-click="hipertension()" type="checkbox" ng-model="clinicalriesgocliente.hypertension_yes" ng-true-value="1" ng-false-value="0">
+                                    Si
+                                    </label><br/>
+                                    <label>
+                                    <input ng-disabled="clinicalriesgocliente.hypertension_yes" ng-click="hipertension2()" type="checkbox" ng-model="clinicalriesgocliente.hypertension_no" ng-true-value="1" ng-false-value="0">
+                                    No
+                                    </label><br/>
+                                  </div> <!-- cierre row -->
+                                </div>
+                              </div><!-- cierre grupo-->
+
+                                        <div  ng-show="showhiper">
+                                              <div class="form-group">
+                                                <label  class="col-md-4 control-label" > ¿CUÁL? </label><br/>
+                                                <div class="col-md-8">
+                                                <textarea placeholder=""
+                                                rows="1"
+                                                class="form-control"
+                                                ng-model="clinicalriesgocliente.hypertension_which"
+                                                style="width:100%"> </textarea>
+                                                </div>
+                                              </div>
+                                        </div>
+                </div></br>
+
+              
+            
+                <div class="col-md-12">
+                  <hr><br/>
+                  <p class="text-justify"> 
+                    ME HAN INFORMADO QUE DEBO ANOTAR MIS ANTECEDENTES TANTO FAMILIARES COMO PERSONALES QUE PUEDEN OCASIONAR RIESGO PARA MI SALUD CON LA PRACTICA DEL EJERCICIO FISICO, QUE DEBO ASISTIR A CONSULTA MEDICA ANTES DE INICIAR MI PROGRAMA DE ENTRENAMIENTO; AL MISMO TIEMPO  ASEGURO QUE TODA LA INFORMACION ES VERDAD Y NO QUEDA NADA POR ANOTAR, POR LO CUAL ME HAGO RESPONSABLE DE TODO LO SUCEDIDO EN CASO DE NO RESPETAR LAS INDICACIONES DADAS A PARTIR DEL MOMENTO QUE TERMINE DE DILIGENCIAR ESTE DOCUMENTO.</p></br>
+
+                   <p class="text-justify"> 
+                    HE ENTENDIDO QUE SE ME HA OFRECIDO LA POSIBILIDAD DE HACERME UNA VALORACION CLINICA PARA IDENTIFICAR LOS FACTORES DE RIESGO OSTEOMUSCULAR Y CARDIOVASCULAR E INICIAR MI PROGRAMA DE ENTRENAMIENTO CON MAYOR SEGURIDAD PARA MI BENEFICIO Y TENER UN MAYOR CONOCIMIENTO EN LA GUÍA PARA EL LOGRO DE MIS OBJETIVOS. SI NO ASISTO A LA CONSULTA DECIDO BAJO MI TOTAL RESPONSABILIDAD INICIAR MIS EJERCICIOS EN EL CENTRO DE ACONDICIONAMIENTO FISICO GYM HEALTH LIFE.</p></br></br></br>
+                   
+
+
+
+
+                    
+                    
+                </div>
+              </div><br/></br>
+      
+            <div class="text-center"> 
+            
+              <div ng-if="settings.processing" style="height: 70px; width: 100%; text-align: center;" >
+                Enviando... <img src="../img/white-loader.gif" />
+              </div>
+
+              <a class="btn btn-default" ng-click="onClickTabWithURL('actividadfisica')">Atrás</a>              
+
+              <button type="submit" class="btn btn-default"><i class="fa fa-floppy-o"></i> Guardar </button>
+            
+            </div>
+
+
+        </script>
+
+
+     
+   
+  </div><!--cierre de tabs-->
+
+
+
+      <div  ng-if="!isShow()"  class="block-area"  >
+        <div class="row">
+          <div class="col-md-6">
+
+            <div ng-show="!validateTheForm" class="alert alert-danger">
+              <strong>Información: </strong> Faltan campos obligatorios y/o indicó datos erroneos.
+            </div>
+
+            <div ng-show="settings.success" class="alert alert-info">
+              <strong>Información: </strong> {{settings.success}}
+            </div>
+
+
+          </div>
+          <div class="col-md-6">
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+
+        </div>
+        <div class="col-md-12">
+          <div class="text-center">
+
+            <br/>
+            <i>
+              El botón de imprimir aparece cuando haya guardado los primeros cambios en la historia clínica
+            </i>
+            <br/>
+
+            <center>
+            <div ng-show="isProcessDownload" style="height: 70px; width: 100%; text-align: right;" >
+              <center>
+              Generando documento... <img src="../img/white-loader.gif" />
+              </center>
+            </div>
+            <br/>  
+              <a ng-show="!siestaguardando" class="btn btn-default" style="cursor:pointer;" 
+               ng-click="downloadExport(history_to_pdf,'pdf')" >
+                <span class="glyphicon glyphicon-print"></span> Imprimir
+              </a>
+              <a type="button" href="#/clientes"  class="btn btn-default"><i class="fa fa-reply"></i> Volver al listado
+              </a>
+            </center>
+          </div>
+        </div>
+      </div>
+     
+</form>
+  </div>
+</div>
+</div>
+    
+
+
+
+

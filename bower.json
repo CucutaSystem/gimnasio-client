@@ -1,0 +1,22 @@
+{
+  "name": "gimnasio",
+  "version": "1.0",
+  "description": "sistema de información para gimnasio",
+  "moduleType": [
+    "node"
+  ],
+  "license": "No",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "angular-resource": "~1.3.15",
+    "angular-route": "~1.3.15",
+    "angular-ui-calendar": "~1.0.0"
+  }
+}

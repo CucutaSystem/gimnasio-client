@@ -1,0 +1,401 @@
+<div class="block-area"  >
+  <div class="tile padding-form">
+  <form novalidate name="theFormClient" ng-submit="submit(theFormClient)" class="form-horizontal">
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Nombres</label>
+          <div class="col-md-8">
+            <input id="name" ng-model="client.name" type="text" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="last_name">Apellidos</label>
+          <div class="col-md-8">
+            <input id="last_name" ng-model="client.last_name" type="text" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="gender">Genero</label>
+          <div class="col-md-8">
+            <label >
+              <input  ng-model="client.gender" value="M" type="radio">
+              Masculino
+            </label>
+            <label>
+              <input ng-model="client.gender" value="F" type="radio">  
+              Femenino
+            </label>
+          </div>
+        </div>
+
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Estado Civil</label>
+          <div class="col-md-8">
+          
+          <div class="row">
+            <div class="col-md-4">  
+              <label >
+                <input ng-model="client.marital_status" value="S" type="radio">
+                Soltero
+              </label>
+              <label>
+              <input ng-model="client.marital_status" value="C" type="radio">  
+                Casado
+              </label>
+            </div>  
+            <div class="col-md-4"> 
+              <label >
+                <input  ng-model="client.marital_status" value="D" type="radio">
+                Divorciado
+              </label>  
+            </div> 
+             <div class="col-md-4">
+              <label>
+                <input ng-model="client.marital_status" value="U" type="radio">  
+                Unión Libre
+              </label>
+             </div>
+
+
+             <div class="col-md-4">
+              <label>
+                <input ng-model="client.marital_status" value="V" type="radio">  
+                Viudo
+              </label>
+             </div>
+
+            </div>
+         </div>  <!-- row-->
+
+        </div>  <!-- cierre grupo-->
+
+
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="identifications_id">Tipo Identificación</label>
+          <div class="col-md-8">
+            <select required ng-blur="existsIdentifications()" id="identifications_id"
+              class="form-control"
+              ng-model="client.identifications_id" ng-options="item.id as item.name for item in identifications" >
+            </select>
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="identification_number">Número Identificación</label>
+        <div class="col-md-8">
+          <input ng-blur="existsIdentifications()" id="identification_number" ng-model="client.identification_number" min="0" type="number" placeholder="Solo números" class="form-control input-md" required="">
+
+          <div class="alert alert-danger" ng-show="existsIdentificationsNumber == 1">
+            <i class="fa fa-exclamation-triangle"></i> La combinación de tipo y número de identificación ya existe
+          </div>
+
+          <div class="alert alert-success" ng-show="existsIdentificationsNumber == 2">
+            <i class="fa fa-check-square-o"></i> La combinación de tipo y número de identificación esta disponible
+          </div>
+
+          <div class="alert alert-danger" ng-show="formatNumberIdentification == 1">
+            <i class="fa fa-check-square-o"></i> Debe indicar un número (Sin puntos ni comas)
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="date_birth">Fecha Nacimiento</label>
+        <div class="col-md-8">
+
+          <p class="input-group">
+            <input
+            ng-change="changeAge()"
+            placeholder="yyyy/mm/dd"
+            type="text"
+            class="form-control"
+            datepicker-popup="{{settings.dateFormat}}"
+            ng-model="client.date_birth"
+            is-open="settings.openedDateBirthday"
+            ng-required="true"
+            readonly=""
+            close-text="Close"
+            ng-click="openDateBirthday($event)" />
+
+
+            <span class="input-group-btn">
+              <button 
+                type="button" 
+                class="btn btn-default" 
+                ng-click="openDateBirthday($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </p>
+
+        </div>
+      </div>
+
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4" for=""></label>
+        <div class="col-md-8">
+          <strong>{{msg_age}}</strong>
+        </div>
+      </div>
+
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="fixed_telephone">Teléfono Fijo</label>
+        <div class="col-md-8">
+          <input id="fixed_telephone" ng-model="client.fixed_telephone" min="0" type="number" placeholder="Solo números" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="cell_phone">Número Celular</label>
+        <div class="col-md-8">
+          <input id="cell_phone" ng-model="client.cell_phone" min="0" type="number" placeholder="Solo numeros" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="residence_address">Dirección Residencia</label>
+        <div class="col-md-8">
+          <input id="residence_address" ng-model="client.residence_address" type="text" placeholder="" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Correo Electrónico</label>
+        <div class="col-md-8">
+          <input ng-blur="existsEmail()" id="email" ng-model="client.email" type="email" placeholder="correo@correo.com" class="form-control input-md" required="">
+
+          <div class="alert alert-danger" ng-show="existsEmailText == 1">
+            <i class="fa fa-exclamation-triangle"></i> Este correo electronico ya se encuentra registrado en el sistema
+          </div>
+
+          <div class="alert alert-success" ng-show="existsEmailText == 2">
+            <i class="fa fa-check-square-o"></i> Este correo esta disponible <i class="fa fa-smile-o"></i>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+     <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Escuchando Biometrico <br/><b> (Opcional) </b></label>
+        <div class="col-md-8">
+
+        <div class="fingerprint">
+          <div class="alert alert-danger" ng-show="resStatusFingerToSave == 0">
+            <div class="text-center">
+              <img class="profile-pic animated" src="../img/senial.gif" alt="">
+            </div>
+          </div>
+          <div class="alert alert-success" ng-show="resStatusFingerToSave == 1">
+            <div class="text-center">
+              <img class="profile-pic animated" src="../img/Huella.jpg" alt="">
+               <br/> <i class="fa fa-check-square-o"></i> Huella Recibida
+            </div>  
+          </div>
+        </div>
+        
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-md-6">
+
+
+      <!-- Textarea -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="risk_factors">Factores de riesgo</label>
+        <div class="col-md-8">
+          <textarea  style="width:100%" class="form-control" id="risk_factors" ng-model="client.risk_factors"></textarea>
+        </div>
+      </div>
+
+
+      <!-- Select Basic -->
+      <div ng-if="!isEdit()" class="form-group">
+        <label class="col-md-4 control-label" for="plans_id">Plan Preferido </label>
+        <div class="col-md-8">
+
+          <select required id="plans_id"
+          class="form-control"
+          ng-model="client.plans_id" ng-options="item.id as [item.name,item.duration,' días',' - $',item.value].join(' ') for item in plans" >
+          <option value="">Seleccione</option>
+        </select>
+
+      </div>
+    </div>
+
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="profession">Profesión</label>
+      <div class="col-md-8">
+        <input id="profession" ng-model="client.profession" type="text" placeholder="" class="form-control input-md" required="">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="place_works_studied">Lugar donde trabaja o estudia</label>
+      <div class="col-md-8">
+        <input id="place_works_studied" ng-model="client.place_works_studied" type="text" placeholder="" class="form-control input-md" required="">
+
+      </div>
+    </div>
+
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="observations">Observaciones</label>
+      <div class="col-md-8">
+        <textarea  style="width:100%" class="form-control" id="observations" ng-model="client.observations"></textarea>
+      </div>
+    </div>
+
+
+
+           <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >¿Alguna Discapacidad?</label>
+          <div class="col-md-8">
+            <input  ng-model="client.gs" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Entidad de Seguro</label>
+          <div class="col-md-8">
+            <input  ng-model="client.ensurance_entity" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-body" style="background: #000000;" >
+
+        <div class="row">
+          <div class="col-md-6">
+            <b>En caso de accidente llamar a:</b>
+            <hr />
+          </div>
+          <div class="col-md-6">
+            <div class="text-right">
+              <img src="../img/cruz_roja.png" alt="logo cruz roja">
+            </div>
+          </div>  
+        </div>
+        <br />
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Nombre </label>
+          <div class="col-md-8">
+            <input   ng-model="client.name_guardian" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Parentesco: </label>
+          <div class="col-md-8">
+            <input   ng-model="client.relationship" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Teléfono: </label>
+          <div class="col-md-8">
+            <input   ng-model="client.phone_guardian" type="text" placeholder="" class="form-control input-md" >
+
+          </div>
+        </div>
+  </div>
+</div>
+
+
+  </div>
+</div>
+<br/>
+
+<div class="row">
+  <div class="col-md-8">
+
+
+  </div>
+  <div class="col-md-4">
+    <div class="text-right">
+
+
+      <div ng-if="settings.processing" style="height: 70px; width: 100%; text-align: right;" >
+        Enviando... <img src="../img/white-loader.gif" />
+      </div>
+
+      <button type="submit" class="btn btn-default"><i class="fa fa-floppy-o"></i> Guardar</button>
+      <a type="button" href="#/clientes"  class="btn btn-default"><i class="fa fa-reply"></i> Volver</a>
+    </div>
+  </div>
+</div>
+
+</form>
+</div>
+</div>
+
+<div class="block-area"  >
+<div class="row">
+  <div class="col-md-6">
+
+    <div ng-show="!validateTheForm" class="alert alert-danger">
+      <strong>Información</strong> Faltan campos obligatorios y/o indicó datos erroneos.
+    </div>
+
+    <div ng-show="settings.success" class="alert alert-info">
+      <strong>Información</strong> {{settings.success}}
+    </div>
+
+
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+</div>

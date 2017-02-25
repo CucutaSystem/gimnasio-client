@@ -1,0 +1,67 @@
+
+
+<section  ng-controller="LoginCtrl" class="block-area" id="login">
+  <header>
+    <h3>Gimnasio – Centro de Acondicionamiento Físico</h3>
+    <marquee width="300"> Centro De Acondicionamiento Físico Gimnasio -- Una dirección. - Telefono: (X) XXXXXX - Email: correo@gimnasio.com </marquee>
+  </header>
+
+
+ 
+  <div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <!-- Login -->
+      <form ng-init="loginStatus = true" novalidate name="theFormLogin" ng-submit="submit(theFormLogin)"  class="box tile animated active" id="box-login">
+        <h2 class="m-t-0 m-b-15">Iniciar Sesión</h2>
+
+        <input ng-model="login.email" required type="email" class="login-control m-b-10" placeholder="Correo electrónico">
+        <input ng-model="login.password" required type="password" class="login-control" placeholder="Contraseña">
+        <br/>
+        <br/>
+        <input type="submit" class="btn btn-sm" value="Entrar"></input>
+        <small style="color: #ffffff;">
+          ¿No Recuerda su usuario y/o contraseña?  <strong>Contacte con el administrador</strong>
+        </small>
+      </form>
+      <div ng-if="settings.processing" style="height: 70px; width: 100%; text-align: right;" >
+        Autenticando... <img src="../img/white-loader.gif" />
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="text-left">
+        <img id="logo-grande-gimnasio" src="img/logooficial.big.png" width="100%" height="100%" alt="Logo Oficial Gimnasio">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <div ng-if="!settings.validateTheForm" class="alert alert-danger">
+        <strong>Información</strong> Faltan campos obligatorios y/o indicó datos erroneos.
+      </div>
+
+      <div ng-show="settings.success" class="alert alert-danger">
+        <strong>Información</strong> {{settings.success}}
+      </div>
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <aside>
+        <img src="../img/chrome.png" alt="Logo Google Chrome">  Utilice google chrome como navegador
+        <br/>
+        <br/>
+        Copyright (c) 2015 CúcutaSystem
+        All Rights Reserved
+      </aside>
+    </div>
+  </div>
+</section>

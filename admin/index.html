@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9" lang="en" ng-app="gimnasio"  ><![endif]-->
+<html lang="en" ng-app="gimnasio"  >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="format-detection" content="telephone=no">
+  <meta charset="UTF-8">
+
+  <meta name="description" content="Sistema De información gimnasio  Gimnasio  Cúcuta Colombia For CúcutaSystem Ingenieros">
+  <meta name="keywords" content="Sistema De información gimnasio  Gimnasio  Cúcuta Colombia Sistema De información gimnasio  Gimnasio  Cúcuta Colombia For CúcutaSystem Ingenieros ">
+
+  <title> Gimnasio </title>
+
+  <link href="../css/all.css" rel="stylesheet">
+
+  <script>
+  document.onkeydown = function(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 116) {
+      console.log('Not F5');
+      return false;
+    }
+  }
+  </script>
+
+</head>
+<body id="skin-blur-ocean">
+
+  <div ng-if="!loginStatus" ng-include="'./panels-app.html'">  </div>
+
+  <section id="main" class="p-relative" role="main">
+
+    <!-- Sidebar -->
+    <aside style="min-height: 800px;" ng-if="!loginStatus" id="sidebar">
+
+      <!-- Sidbar Widgets -->
+      <div class="side-widgets overflow">
+        <!-- Profile Menu -->
+        <div class="text-center s-widget m-b-25 dropdown" id="profile-menu">
+          <img class="profile-pic animated" ng-src="{{user.dataurl}}" alt="">
+          <h4 class="m-0">{{user.name}}</h4>
+          Administrador(a)
+        </div>
+
+        <div class="tile">
+          <h2 class="tile-title">Menú</h2>
+
+          <div class="listview icon-list itemMenu">
+
+            <div class="media">
+              <div class="media-body">
+                <a    href="#/inicio" ><i class="fa fa-home"></i> Inicio</a>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-body">
+                <a    href="#/accesos" ><i class="fa fa-user"></i> Control Acceso</a>
+              </div>
+            </div>
+
+
+            <div class="media">
+              <div class="media-body">
+                <a    href="#/clientes" ><i class="fa fa-user"></i> Clientes</a>
+              </div>
+            </div>
+
+            
+            <div ng-if="!(user.name === 'Atención Gym')" class="media">
+              <div class="media-body">
+                <a    href="#/planes" ><i class="fa fa-fighter-jet"></i> Planes</a>
+              </div>
+            </div>
+
+            <div ng-if="!(user.name === 'Atención Gym')" class="media">
+              <div class="media-body">
+                <a    href="#/bonos" ><i class="fa fa-gift"></i> Bonos</a>
+              </div>
+            </div>
+
+            <div ng-if="!(user.name === 'Atención Gym')" class="media">
+              <div class="media-body">
+                <a    href="#/descuentos" ><i class="fa fa-tag"></i> Descuentos</a>
+              </div>
+            </div>
+
+            <div ng-if="!(user.name === 'Atención Gym')" class="media">
+              <div class="media-body">
+                <a    href="#/pagos" ><i class="fa fa-barcode"></i> Pagos Realizados</a>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-body">
+                <a  href="#/correos" ><i class="fa fa-envelope-o"></i> Emails</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div ng-include="'./panel-status.html'">  </div>
+      </div>
+
+
+    </aside>
+
+    <div ng-if="loginStatus" ng-include="'./panels-login.html'">  </div>
+
+    <!-- Content -->
+    <section id="content" class="container">
+
+
+
+      <!-- Breadcrumb -->
+      <ol ng-if="!loginStatus" class="breadcrumb">
+        <li ng-controller="LoginCtrl" ><a style="cursor:pointer; font-size: 16px;" ng-click="remove()" ><i class="fa fa-sign-out"></i> Cerrar Sesión</a></li>
+      </ol>
+
+      <div ng-view> </div>
+
+    </section>
+
+
+  </section>
+
+
+  <script type="text/javascript" src="../js/all.js" ></script>
+
+
+
+</body>
+</html>
+

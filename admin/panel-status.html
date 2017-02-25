@@ -1,0 +1,46 @@
+<!-- Projects -->
+<div ng-controller="StatusCtrl" class="s-widget m-b-25">
+    <h2 class="tile-title">
+        Estado de clientes
+    </h2>
+
+    <div class="s-widget-body">
+        <div class="side-border">
+          <small style="color:#ffffff;">Al día</small>
+          <a href="#/clientes/status/1">&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i> Ver </a>
+          <div class="progress progress-small">
+               <a href="#/clientes/status/1" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-success" style="width: {{statusclients.in_force}}%;" data-original-title="{{statusclients.in_force}}%">
+                    <span class="sr-only">{{statusclients.in_force}}% Clientes</span>
+               </a>
+          </div>
+        </div>
+        <div class="side-border">
+          <small style="color:#ffffff;">Por vencer</small>
+          <a href="#/clientes/status/2">&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i> Ver </a>
+          <div class="progress progress-small">
+               <a href="/clientes/status/2" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-warning" style="width: {{statusclients.expiring}}%;" data-original-title="{{statusclients.expiring}}%">
+                    <span class="sr-only">{{statusclients.expiring}}% Clientes</span>
+               </a>
+          </div>
+        </div>
+        <div class="side-border">
+            <small  style="color:#ffffff;">Vencidos</small>
+            <a href="#/clientes/status/3">&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i> Ver </a>
+            <div class="progress progress-small">
+                 <a href="#/clientes/status/3" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-danger" style="width: {{statusclients.expired}}%;" data-original-title="{{statusclients.expired}}%">
+                      <span class="sr-only">{{statusclients.expired}}% Clientes</span>
+                 </a>
+            </div>
+        </div>
+        <div class="side-border">
+            <small  style="color:#ffffff;">Sin primer pago</small>
+            <a href="#/clientes/status/4">&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i> Ver </a>
+            <div class="progress progress-small">
+                 <a href="#/clientes/status/4" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-default" style="width: {{statusclients.without_first_payment}}%;" data-original-title="{{statusclients.without_first_payment}}%">
+                      <span class="sr-only">{{statusclients.without_first_payment}}% Clientes</span>
+                 </a>
+            </div>
+        </div>
+
+    </div>
+</div>
